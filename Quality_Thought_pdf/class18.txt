@@ -1,0 +1,259 @@
+ii) if else stmt 
+=================
+It is used to execute the source code either our condition is true or false.
+
+syntax:
+------
+	if(condition)
+	{
+		- //code to be execute if cond is true 	
+	}	
+	else
+	{
+		- //code to be execute if cond is false 
+	}
+
+ex:
+----
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("stmt1");
+		
+		if(true)
+		{
+			System.out.println("stmt2");
+		}
+		else
+		{
+			System.out.println("stmt3");
+		}
+		
+		System.out.println("stmt4");
+	}
+}
+o/p:
+	stmt1
+	stmt2
+	stmt4
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("stmt1");
+		
+		if(false)
+		{
+			System.out.println("stmt2");
+		}
+		else
+		{
+			System.out.println("stmt3");
+		}
+		
+		System.out.println("stmt4");
+	}
+}
+o/p:
+	stmt1
+	stmt3
+	stmt4
+
+Q) Write a java program to check given age is eligible to vote or not?
+
+import java.util.Scanner;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the age :");
+		int age = sc.nextInt();
+	
+		if(age>=18)
+			System.out.println("U r eligible to vote");
+		else
+			System.out.println("U r not eligible to vote");
+	}
+}
+
+
+Q) Write a java program to check given number is even or odd?
+
+import java.util.Scanner;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the number :");
+		int n = sc.nextInt(); // 10 
+		
+		if(n%2==0)
+			System.out.println("It is a even number");
+		else
+			System.out.println("It is a odd number");
+		
+	}
+}
+
+Q) Write a java program to check given number is odd or not?
+
+import java.util.Scanner;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the number :");
+		int n = sc.nextInt(); // 10 
+		
+		if(n%2!=0)
+			System.out.println("It is odd number");
+		else
+			System.out.println("It is not odd number");
+		
+	}
+}
+
+Q) Write a java program to check given number is positive or negative?
+
+import java.util.Scanner;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the number :");
+		int n = sc.nextInt(); // 12
+		
+		if(n==0)
+		{
+			System.out.println("It is not a positive or negative number");
+			System.exit(0);
+		}
+		
+		if(n>0)
+			System.out.println("It is a positive number");
+		else
+			System.out.println("It is a negative number");
+		
+	}
+}
+
+Q) Write a java program to check given year is a leap year or not?
+
+import java.util.Scanner;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the year :");
+		int year = sc.nextInt();
+		
+		if(year%4==0 && year%100!=0 || year%400==0)
+			System.out.println("It is a leap year");
+		else
+			System.out.println("It is not a leap year");
+	}
+}
+
+Q) 
+John decided to buy the shoes. He visited to shoe showroom to buy pair of shoes. But he has a myth that we can buy the shoe if shoe cost divisible by 3 and 5 only. Write a java program to display John can buy the shoe or not?
+
+import java.util.Scanner;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the shoe price :");
+		int price = sc.nextInt(); // 1500
+		
+		if(price%3==0 && price%5==0)
+			System.out.println("John can buy the shoe");
+		else
+			System.out.println("John can't buy the shoe");
+	}
+}
+
+Q) Write a java program to check given alphabet is a vowel or not?
+
+
+import java.util.Scanner;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the alphabet :");
+		char ch = sc.next().charAt(0);
+		
+		if(ch=='a' || ch=='e' || ch=='i' || ch=='o' || ch=='u')
+			System.out.println("It is a vowel");
+		else
+			System.out.println("It is not a vowel");
+	}
+}
+
+Assignment 
+==========
+Q) Write a java program to find out greatest of two numbers?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

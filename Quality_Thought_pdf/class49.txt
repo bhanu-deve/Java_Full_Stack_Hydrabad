@@ -1,0 +1,722 @@
+Java 8 Features 
+===============
+
+Functional Interface 
+====================
+Interface which contains only one abstract method is called functional interface.
+
+We have following list of functional interfaces.
+ex:
+	Comparable 
+	Runnable 
+	ActionalListener 
+	and etc.
+
+It can any number of default methods and static methods.
+
+The main objective of functional interface is to achieve functional programming.
+ex:
+	a = f1(){}
+
+	f1(f2(){})
+	{
+	}
+
+It is also known as SAM interface or Single Abstract Method interface.
+
+@FunctionalInterface annotation is used to declare functional interface and it is optional.
+
+
+ex:
+---
+@FunctionalInterface 
+interface A 
+{
+	public abstract void m1();
+}
+class B implements A 
+{
+	public void m1()
+	{
+		System.out.println("M1-Method");
+	}
+}
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		A a = new B();
+		a.m1();
+	}
+}
+
+ex:
+---
+@FunctionalInterface 
+interface A 
+{
+	public abstract void m1();
+}
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		A a = new A()
+		{
+			public void m1()
+			{
+				System.out.println("From M1 Method");
+			}
+		};
+		a.m1();	
+	}
+}
+
+
+Lamda Expression
+================
+Lamda expression introduced in Java 8.
+
+We can use lamda expression when we have functional interface.
+
+Lamda expression is used to concise the code.
+
+Lamda expression consider as method.
+
+The main objective of lamda expression is to achieve functional programming.
+
+Lamda expression does not allow name, returntype and modifiers.
+
+ex:
+	Java Method 
+	----------
+		public void m1()
+		{
+			System.out.println("Hello");	
+		}
+	
+	Lamda Expression 
+	----------------
+		()->
+		{
+			System.out.println("Hello");	
+		};
+
+Ex:
+---
+@FunctionalInterface 
+interface A 
+{
+	public abstract void m1();
+}
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		A a = ()->
+			  {
+					System.out.print("Lamda Expression");
+			  };
+			  
+		a.m1(); 
+	}
+}
+
+ex:
+---
+@FunctionalInterface 
+interface A 
+{
+	public abstract void m1(int i,int j);
+}
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		A a = (int i,int j)->
+			  {
+					System.out.print(i+j);
+			  };
+			  
+		a.m1(10,20); 
+	}
+}
+
+ex:
+---
+@FunctionalInterface 
+interface A 
+{
+	public abstract int m1(int i,int j);
+}
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		A a = (int i,int j)->
+			  {
+					return i+j;
+			  };
+			  
+		System.out.println(a.m1(100,200)); 
+	}
+}
+
+
+Default methods in interface
+=============================
+Default methods in interface introduced in Java 8.
+
+Java provides facility to declare a methods in interface and tagged with default keyword.
+
+syntax:
+------
+	default  <returntype>  <methodName>()
+	{
+		-
+		- // code to be execute 
+		-
+	}
+
+Default methods are non-abstract methods.
+
+Default methods we can override.
+
+ex:
+---
+
+interface A 
+{
+	//abstract method 
+	public abstract void m1();
+	
+	//default method 
+	default void m2()
+	{
+		System.out.println("From M2 Method");
+	}
+}
+class B implements A 
+{
+	public void m1()
+	{
+		System.out.println("From M1 Method");
+	}
+}
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		A a = new B();
+		a.m1();
+		a.m2();
+	}
+}
+
+ex:
+---
+
+interface A 
+{
+	//abstract method 
+	public abstract void m1();
+	
+	//default method 
+	default void m2()
+	{
+		System.out.println("From M2 Method");
+	}
+}
+class B implements A 
+{
+	public void m1()
+	{
+		System.out.println("From M1 Method");
+	}
+	public void m2()
+	{
+		System.out.println("Override-From M2 Method");
+	}
+}
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		A a = new B();
+		a.m1();
+		a.m2();
+	}
+}
+
+Using default method of an interface we achieve multiple inheritance.
+
+ex:
+---
+interface Right 
+{
+	default void m1()
+	{
+		System.out.println("Right-M1 Method");
+	}
+}
+interface Left 
+{
+	default void m1()
+	{
+		System.out.println("Left-M1 Method");
+	}
+}
+class Middle implements Right,Left 
+{
+	public void m1()
+	{
+		System.out.println("Middle-M1 Method");
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		Middle m = new Middle();
+		m.m1();
+	}
+}
+
+ex:
+---
+interface Right 
+{
+	default void m1()
+	{
+		System.out.println("Right-M1 Method");
+	}
+}
+interface Left 
+{
+	default void m1()
+	{
+		System.out.println("Left-M1 Method");
+	}
+}
+class Middle implements Right,Left 
+{
+	public void m1()
+	{
+		Left.super.m1();
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		Middle m = new Middle();
+		m.m1();
+	}
+}
+
+ex:
+---
+interface Right 
+{
+	default void m1()
+	{
+		System.out.println("Right-M1 Method");
+	}
+}
+interface Left 
+{
+	default void m1()
+	{
+		System.out.println("Left-M1 Method");
+	}
+}
+class Middle implements Right,Left 
+{
+	public void m1()
+	{
+		Right.super.m1();
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		Middle m = new Middle();
+		m.m1();
+	}
+}
+
+Static methods in interface
+=============================
+Static methods in interface introduced in Java 8.
+
+Java provides facility to declare methods in interface and tagged with static keyword.
+
+syntax:
+-------
+	static  <return_type>  <method_name>()
+	{
+		-
+		- //code to be execute 
+		-
+	}
+
+Static method is non-abstract method.
+
+Static method we can't override.
+
+ex:
+---
+interface A 
+{
+	//static method 
+	static void m1()
+	{
+		System.out.println("static method");
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		A.m1();
+	}
+}
+
+
+
+Q) Why Java throws NullPointerException?
+
+When our code attempts to read object reference which is not initialized then we will get NullPointerException. 
+
+ex:
+	Test t=null;
+	System.out.println(t.i); // NullPointerException 
+
+	Test t=null;
+	t.methodOne(); // NullPointerException 
+
+	int[] arr=null;
+	System.out.println(arr[0]); // NullPointerException 
+
+	ArrayList al =null;
+	System.out.println(al.get(0)); // NullPointerException 
+
+	Test t=null;
+	synchronized(t)
+	{
+	}
+	// NullPointerException 
+
+To over come this limitation we need to do following things.
+
+1) Initialize the objects before using them 
+
+2) Perform null checking before dereferencing of an object.
+
+3) Using Optional class to perform null checks gracefully.
+
+
+1) Initialize the objects before using them 
+---------------------------------------------
+ex:
+	Test t=new Test();
+	System.out.println(t.i); 
+
+	Test t=new Test();
+	t.methodOne(); 
+
+	int[] arr=new int[3];
+	System.out.println(arr[0]); 
+
+	ArrayList al =new ArrayList();
+	System.out.println(al.get(0)); 
+
+	Test t=new Test();
+	synchronized(t)
+	{
+	}
+ 
+2) Perform null checking before dereferencing of an object
+---------------------------------------------------------
+
+class Test 
+{
+	int i=10;
+	
+	public static void main(String[] args)
+	{
+		Test t=null;
+		
+		if(t==null)
+		{
+			t = new Test();
+		}
+		
+		System.out.println(t.i); // 10
+	}
+}
+
+Optional
+==========
+Optional class which is introduced in Java 8.
+
+Optional class present in java.util package.
+
+Optional class is used to perform null checks.
+
+There are thre ways to create Optional class object.
+
+ex:
+	Optional<Object> optional = Optional.empty();
+	Optional<Object> optional = Optional.of();
+	Optional<Object> optional = Optional.ofNullable();
+
+
+ex:
+---
+import java.util.*;
+class Test 
+{
+	public static void main(String[] args)
+	{
+		Optional<Object> optional = Optional.empty();
+		System.out.println(optional);//Optional.empty
+	}
+}
+
+ex:
+---
+import java.util.*;
+class Test 
+{
+	public static void main(String[] args)
+	{
+		String str = "ihub";
+		Optional<Object> optional = Optional.of(str);
+		System.out.println(optional);//Optional[ihub]
+		System.out.println(optional.get());//ihub
+	}
+}
+
+ex:
+---
+import java.util.*;
+class Test 
+{
+	public static void main(String[] args)
+	{
+		String str = null;
+		Optional<Object> optional = Optional.of(str);
+		System.out.println(optional);
+		System.out.println(optional.get());//  R.E NullPointerException
+	}
+}
+
+ex:
+---
+import java.util.*;
+class Test 
+{
+	public static void main(String[] args)
+	{
+		String str = "ihub";
+		Optional<Object> optional = Optional.of(str);
+		System.out.println(optional); Optional[ihub]
+		System.out.println(optional.get());//  ihub
+	}
+}
+
+ex:
+---
+import java.util.*;
+class Test 
+{
+	public static void main(String[] args)
+	{
+		String str = "qt";
+		Optional<Object> optional = Optional.ofNullable(str);
+		System.out.println(optional.orElse("Value Not Found"));
+	}
+}
+
+ex:
+---
+import java.util.*;
+class Test 
+{
+	public static void main(String[] args)
+	{
+		String str =null;
+		Optional<Object> optional = Optional.ofNullable(str);
+		System.out.println(optional.orElse("Value Not Found"));
+	}
+}
+
+ex:
+---
+import java.util.*;
+class Test 
+{
+	int i=10;
+	
+	public static void main(String[] args)
+	{
+		Test t = null;
+		
+		Optional<Object> optional = Optional.ofNullable(t);
+		
+		if(!optional.isPresent())
+		{
+			t = new Test();
+		}
+		
+		System.out.println(t.i); // 10
+	}
+}
+
+Stream API 
+===========
+Stream API introduced in Java 8.
+
+Stream API present in java.util.stream package.
+
+Stream API allows functional style programming and makes our code simple and readable.
+
+Stream API is used to process sequence of objects.
+
+Stream API is used to perform bulk operations on Collections.
+
+ex:
+---
+import java.util.*;
+import java.util.stream.*;
+class Test 
+{
+	public static void main(String[] args)
+	{
+		List<Integer> list = List.of(7,9,2,4,1);
+		
+		List<Integer> newList = list.stream().map(i-> i + 10).collect(Collectors.toList());
+		
+		System.out.println(newList);
+	}
+}
+
+ex:
+---
+import java.util.*;
+import java.util.stream.*;
+class Test 
+{
+	public static void main(String[] args)
+	{
+		
+		List<Integer> list = List.of(7,9,2,4,1);
+		
+		List<Integer> newList = list.stream().filter(i-> i%2==0).collect(Collectors.toList());
+		
+		System.out.println(newList);
+
+	}
+}
+
+ex:
+---
+import java.util.*;
+import java.util.stream.*;
+class Test 
+{
+	public static void main(String[] args)
+	{
+		
+		List<Integer> list = List.of(7,9,2,4,1);
+		
+		List<Integer> newList = list.stream().sorted().collect(Collectors.toList());
+		
+		System.out.println(newList);
+
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

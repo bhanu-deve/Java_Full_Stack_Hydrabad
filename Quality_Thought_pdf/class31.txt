@@ -1,0 +1,497 @@
+Inheritance 
+============
+Inheritance is a mechanism in which one class will inherit the properties of another class.
+
+Inheritance is a mechanism where we will derived class in a presence of existing class.
+
+By using extends keyword we can implements inheritance.
+
+The main objective of inheritance is to achieve reusability.
+
+Diagram: class31.1
+
+We have following list of inheritance.
+
+1) Single Level Inheritance 
+
+2) Multi Level Inheritance
+
+3) Multiple Inheritance 
+
+4) Hierarchical Inheritance 
+
+5) Hybrid Inheritance 
+
+
+1) Single Level Inheritance
+---------------------------
+If we derived a class in the presence of one base class is called single level inheritance.
+
+Diagram:
+			A (Parent/Super/Base class)
+			|
+			|
+			|
+			B (Child/Sub/Derived class)
+
+ex:
+---
+class A 
+{
+	int i=10;
+	int j=20;
+}
+class B extends A 
+{
+	int k=30;
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		A a = new A();
+		System.out.println(a.i+" "+a.j);
+		
+		B b = new B();
+		System.out.println(b.i+" "+b.j+" "+b.k);
+	}
+}
+
+ex:
+---
+class A 
+{
+	public void m1()
+	{
+		System.out.println("M1-Method");
+	}
+}
+class B extends A 
+{
+	public void m2()
+	{
+		System.out.println("M2-Method");
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		A a = new A();
+		a.m1();
+		
+		B b = new B();
+		b.m1();
+		b.m2();
+	}
+}
+
+2) Multi Level Inheritance
+----------------------------
+If we derived a class in the presence of one base class and that class is derived from another base class is called multi level inheritance.
+
+Diagram:
+		A
+		|
+		|
+		B
+		|
+		|
+		C 
+
+ex:
+---
+class A 
+{
+	public void m1()
+	{
+		System.out.println("M1-Method");
+	}
+}
+class B extends A 
+{
+	public void m2()
+	{
+		System.out.println("M2-Method");
+	}
+}
+class C extends B 
+{
+	public void m3()
+	{
+		System.out.println("M3-Method");
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		A a = new A();
+		a.m1();
+		
+		B b = new B();
+		b.m1();
+		b.m2();
+		
+		C c  = new C();
+		c.m1();
+		c.m2();
+		c.m3();
+	}
+}
+
+
+3) Multiple Inheritance 
+------------------------
+In java, we can't extends more then one class simultenously because java does not support multiple inheritance.
+ex:
+	class A 
+	{
+	}
+	class B 
+	{
+	}
+	class C extends A,B  --> invalid 
+	{
+	}
+
+But interface can extends more then one interface so we can achieve multiple inheritance concept throught interfaces.
+ex:
+	interface A 
+	{
+	}
+	interface B 
+	{
+	}
+	interface C extends A,B --> valid 
+	{
+	}
+
+If our class does not extends any other class then it is a directly child class of Object class.
+
+ex:			Diag:
+	class A 			Object
+	{				|
+	}				|
+					A 
+		
+
+If our class extends some other class then our class becomes indirect child class of Object class.
+
+ex:				Diag:
+	class A 			Object 
+	{				|		
+	}				|		
+	class B extends A 		A 
+	{				|
+	}				|
+					B 
+
+Java does not support cyclic inheritance.
+ex:
+	class A extends B 
+	{
+	}
+	class B extends A 
+	{
+	}	
+
+
+
+Q) Why java does not support multiple iheritance?
+
+There is a chance of raising ambiguity problem that's why java does not support multiple inheritance.
+ex:
+		P1.m1()		     	     P2.m1()
+		|--------------------------------|
+				|
+				c.m1()
+
+
+4) Hierarchical Inheritance 
+---------------------------
+If we derived multiple classes by using one base class is called hierarchical inheritance.
+
+Diagram:
+				A
+				|
+		|-------------------------------|
+		B				C
+
+ex:
+---
+class A 
+{
+	public void m1()
+	{
+		System.out.println("M1-Method");
+	}
+}
+class B extends A 
+{
+	public void m2()
+	{
+		System.out.println("M2-Method");
+	}
+}
+class C extends A
+{
+	public void m3()
+	{
+		System.out.println("M3-Method");
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		A a = new A();
+		a.m1();
+		
+		B b = new B();
+		b.m1();
+		b.m2();
+		
+		C c  = new C();
+		c.m1();
+		c.m3();
+	}
+}
+
+
+
+5) Hybrid Inheritance 
+----------------------
+Hybrid inheritance is a combination of more then two inheritance.
+
+Java does not support hybrid inheritance.
+
+
+Diagram:
+				A
+				|
+		|-------------------------------|
+		B				C
+		|-------------------------------|
+				|
+				D 
+
+
+Has-A relationship 
+===================
+Has-A relationship is also known as composition and aggregation.
+
+There is no specific keyword to implements Has-A relationship but mostly we will use new operator.
+
+The main objective of Has-A relationship is to provide reusability.
+
+Has-A relationship will increase dependency between two components.
+
+ex:
+---
+class Ihub 
+{
+	public String courseName()
+	{
+		return "Full Stack Java";
+	}
+	public double courseFee()
+	{
+		return 30000d;
+	}
+	public String trainerName()
+	{
+		return "Niyaz Sir";
+	}
+}
+class Usha 
+{
+	public void getCourseDetails()
+	{
+		Ihub i = new Ihub();
+		System.out.println("Course Name :"+i.courseName());
+		System.out.println("Course Fee :"+i.courseFee());
+		System.out.println("Trainer Name :"+i.trainerName());
+	}
+}
+class Student 
+{
+	public static void main(String[] args)
+	{
+		Usha u = new Usha();
+		u.getCourseDetails();
+	}
+}
+
+composition
+===========
+Without existing container object there is a no chance of having contained object then the relationship between container and contained object is called composition which is strongly association.
+
+Diagram: class31.2
+
+
+Aggregation 
+============
+Without existing container object there is a chance of having contained object then the relationship between container and contained object is called aggregation which is loosely association.
+
+Diagram: class31.3
+
+
+
+Method Overloading 
+===================
+Having same method name with different parameters or signatures in a single class is called method overloading.
+
+All the methods present in a class are called overloaded methods.
+
+Method overloading will reduce complexity of the programming.
+
+ex:
+---
+class MeeSeva 
+{
+	//overloaded methods 
+	public void search(int voterId)
+	{
+		System.out.println("Details Found via voterId");
+	}
+	public void search(String houseNo)
+	{
+		System.out.println("Details Found via houseNo");
+	}
+	public void search(long aadharNo)
+	{
+		System.out.println("Details Found via aadharNo");
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		MeeSeva ms = new MeeSeva();
+		ms.search(101);
+		ms.search("1-7-4/1");
+		ms.search(2222L);
+	}
+}
+
+Q) Can we overload main method in java?
+
+Yes, we can overload main method in java but JVM always execute main method with String[] parmameter only.
+
+ex:
+
+class Test 
+{
+	public static void main(int[] iargs)
+	{
+		System.out.println("int[] iargs");
+	}
+	public static void main(String[] args)
+	{
+		System.out.println("String[] args");
+	}
+}
+
+
+Method Overriding 
+==================
+Having same method name with same parameters in two different classes is called method overriding.
+
+Methods which are present in parent class are called overridden methods.
+
+Methods which are present in child class are called overridding methods.
+
+ex:
+---
+class Parent 
+{
+	//overridden methods 
+	public void property()
+	{
+		System.out.println("House+Land+Gold");
+	}
+	public void marry()
+	{
+		System.out.println("Trisha");
+	}
+}
+class Child extends Parent 
+{
+	//overridding methods 
+	@Override
+	public void marry()
+	{
+		System.out.println("Rashmika");
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		Parent p = new Parent();
+		p.property(); // House+Land+Gold
+		p.marry(); // Trisha 
+		
+		Child c = new Child();
+		c.property(); // House+Land+Gold
+		c.marry(); // Rashmika
+		
+		Parent p1 = new Child();
+		p1.property(); // House+Land+Gold
+		p1.marry(); // Rashmika
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

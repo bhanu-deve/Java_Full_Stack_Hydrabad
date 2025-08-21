@@ -1,0 +1,445 @@
+Q) Java program to display number of unique pairs
+
+Inputs:
+
+	5
+	john tom
+	john marry
+	john tom
+	marry anna
+	marry anna 	
+
+output:
+	1
+	2
+	2
+	3
+	3
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();  // 5 
+		
+		sc.nextLine();
+		
+		Set<String> pairSet = new HashSet<String>();
+		List<Integer> result = new ArrayList<Integer>();
+		
+		for(int i=1;i<=n;i++)
+		{
+			String line = sc.nextLine().trim();
+			pairSet.add(line);
+			result.add(pairSet.size());
+		}
+		
+		for(int i : result)
+		{
+			System.out.println(i);
+		}
+		
+	}
+}
+
+Map 
+=====
+It is a not a child interface of Collection interface.
+
+If we want to represent group of individual objects in key and value pair then we need to use Map interface.
+
+Key and value both must be objects.
+
+Key can't be duplicate but value can be duplicate.
+
+Each key and value pair is known as single/one entry.
+
+Diagram: class46.1
+
+Diagram: class46.2
+
+
+HashMap 
+========
+The underlying data structure is Hashtable.
+
+Key can't be duplicate but value can be duplicate.
+
+Insertion order is not preserved because it takes hashcode of a key.
+
+Hetrogeneous objects are allowed for both key and value.
+
+Null insertion is possible for both key and value.
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		HashMap hm=new HashMap();
+		hm.put("one","raja");
+		hm.put("five","alan");
+		hm.put("nine","jose");
+		hm.put("six","nelson");
+		System.out.println(hm); // {nine=jose, six=nelson, one=raja, five=alan}
+		
+		hm.put("one","gogo");
+		System.out.println(hm); // {nine=jose, six=nelson, one=gogo, five=alan}
+		
+		hm.put(1,100);
+		System.out.println(hm); // {nine=jose, 1=100, six=nelson, one=gogo, five=alan}
+		
+		hm.put(null,null);
+		System.out.println(hm); // {null=null, nine=jose, 1=100, six=nelson, one=gogo, five=alan}
+	}
+}
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		HashMap<String,String> hm=new HashMap<String,String>();
+		hm.put("one","raja");
+		hm.put("five","alan");
+		hm.put("nine","jose");
+		hm.put("six","nelson");
+		System.out.println(hm); // {nine=jose, six=nelson, one=raja, five=alan}
+		
+		Set s = hm.keySet();
+		System.out.println(s); // [nine, six, one, five]
+		
+		Collection c = hm.values();
+		System.out.println(c); // [jose, nelson, raja, alan]
+		
+		Set s1 = hm.entrySet();
+		System.out.println(s1); // [nine=jose, six=nelson, one=raja, five=alan]
+	}
+}
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		HashMap<String,String> hm=new HashMap<String,String>();
+		hm.put("one","raja");
+		hm.put("five","alan");
+		hm.put("nine","jose");
+		hm.put("six","nelson");
+		
+		for(Map.Entry<String,String> entry : hm.entrySet())
+		{
+			System.out.println(entry.getKey()+"="+entry.getValue());	
+		}
+		
+		
+	}
+}
+
+LinkedHashMap 
+=============
+It is a child class of HashMap class.
+LinkedHashMap is exactly same as HashMap class with following differences.
+
+HashMap						LinkedHashMap 
+-------------					--------------
+The underlying data structure is Hashtable.	The underlying data structure is Hashtable and
+						LinkedList.
+
+Insertion order is not preserved.		Insertion order is preserved.
+
+Introduced in 1.2 version.			Introduced in 1.4v. 
+
+ex:
+----
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		LinkedHashMap lhm=new LinkedHashMap();
+		lhm.put("one","raja");
+		lhm.put("five","alan");
+		lhm.put("nine","jose");
+		lhm.put("six","nelson");
+		System.out.println(lhm); // {one=raja,five=alan,nine=jose,six=nelson}
+		
+		lhm.put("one","gogo");
+		System.out.println(lhm); // {one=gogo,five=alan,nine=jose,six=nelson}
+		
+		lhm.put(1,100);
+		System.out.println(lhm); // {one=gogo,five=alan,nine=jose,six=nelson,1=100}
+		
+		lhm.put(null,null);
+		System.out.println(lhm); // {one=gogo,five=alan,nine=jose,six=nelson,1=100,null=null}
+	}
+}
+
+
+TreeMap 
+========
+The underlying data structure is RED BLACK TREE.
+
+Key can't be duplicate but value can be duplicate.
+
+Insertion order is not preserved because it takes sorting order of key.
+
+If we depend upon default natural sorting order then key can homogeneous or comparable.
+
+If we depend upon customized sorting order then key can be hetrogeneous and Non-comparable.
+
+Key can't be null but value can be null.
+
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		TreeMap<Integer,String> tm = new TreeMap<Integer,String>();
+		tm.put(10,"ten");
+		tm.put(1,"one");
+		tm.put(5,"five");
+		System.out.println(tm); //{1=one,5=five,10=ten}
+		
+		tm.put(1,"gogo");
+		System.out.println(tm); //{1=gogo,5=five,10=ten}
+		
+		tm.put(6,null);
+		System.out.println(tm); //{1=gogo,5=five,6=null,10=ten}
+		
+		tm.put(null,"six");
+		System.out.println(tm); // R.E NullPointerException
+	}
+}
+
+
+Hashtable 
+=========
+The underlying data structure is Hashtable.
+
+Key can't be duplicate but value van be duplicate.
+
+Insertion order is not preserved because it takes descending order of the key.
+
+Hetrogeneous objects are allowed for both key and value.
+
+Null insertion is not possible for both key and value.
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Hashtable ht = new Hashtable();
+		ht.put(5,"five");
+		ht.put(1,"one");
+		ht.put(10,"ten");
+		System.out.println(ht); //{10=ten,5=five,1=one}
+		
+		ht.put(1,"gogo");
+		System.out.println(ht); // {10=ten,5=five,1=gogo}
+		
+		ht.put("six",6);
+		System.out.println(ht); // {10=ten,5=five,six=6,1=gogo}
+		
+		ht.put(null,null);
+		System.out.println(ht); // R.E NullPointerException
+	}
+}
+
+Interview Question 
+==================
+
+Q) Write a java program to count number words present in a string?
+
+input:
+	this is is java java class 
+output:
+	this=1  is=2  java=2  class=1
+
+
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="this is is java java class";
+		String[] sarr = str.split(" ");
+		
+		Map<String,Integer> map = new LinkedHashMap<String,Integer>();
+		
+		//for each loop
+		for(String s : sarr)
+		{
+			if(map.containsKey(s))
+			{
+				map.put(s,map.get(s)+1);
+			}
+			else
+			{
+				map.put(s,1);
+			}
+		}
+		for(Map.Entry<String,Integer> entry : map.entrySet())
+		{
+			System.out.print(entry.getKey()+"="+entry.getValue()+" ");
+		}
+	}
+}
+
+Q) Write a java program to count number characters present in a string?
+
+input:
+	java
+output:
+	j=1 a=2 v=1 
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="java";
+		char[] carr = str.toCharArray();
+		
+		Map<Character,Integer> map = new LinkedHashMap<Character,Integer>();
+		
+		//for each loop
+		for(char c : carr)
+		{
+			if(map.containsKey(c))
+			{
+				map.put(c,map.get(c)+1);
+			}
+			else
+			{
+				map.put(c,1);
+			}
+		}
+		for(Map.Entry<Character,Integer> entry : map.entrySet())
+		{
+			System.out.print(entry.getKey()+"="+entry.getValue()+" ");
+		}
+	}
+}
+
+
+Q) Write a java program to display lucky number from given array?
+
+input:
+	8 5 2 5 2 8 8 4 
+output:
+	2 
+
+input:
+	1 2 2 3 3 3 4 4 4 4
+output:
+	4 
+
+
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		//int[] arr={8,5,2,5,2,8,8,4};
+		int[] arr = {1,2,2,3,3,3,4,4,4,4};
+		Map<Integer,Integer> map = new LinkedHashMap<Integer,Integer>();
+		
+		for(int i : arr)
+		{
+			if(map.containsKey(i))
+			{
+				map.put(i,map.get(i)+1);
+			}
+			else
+			{
+				map.put(i,1);
+			}
+		}
+		
+		int maxCount = 0;
+		for(Map.Entry<Integer,Integer> entry: map.entrySet())
+		{
+			if(entry.getKey() == entry.getValue())
+			{
+				if(entry.getKey() > maxCount)
+				{
+					maxCount = entry.getKey();
+				}
+			}
+		}
+		System.out.println(maxCount);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,146 @@
+Java
+=====
+Version		:	JDK-24
+
+Creator		:	James Gosling 
+
+Vendor		:	Oracle Corporation 
+
+Open source	:	Open source 
+
+Tutorials	:	www.javatpoint.com 
+			www.javaus.com 
+			www.dzone.com 
+			www.tutorialspoint.com 
+			and etc.
+Download link 	:
+https://drive.google.com/file/d/1oLBh5FWTASeJbDedrJRFlSF2DkmbTeaB/view?usp=sharing
+
+Steps to develop first java application 
+========================================
+step1:
+------
+	Make sure JDK 24 installed successfully.
+	
+step2:
+-----
+	Check JDK version working perfectly or not.
+	ex:
+		cmd> javap 
+		cmd> java -version   
+			
+step3:
+-------
+	Create a "javaprog" folder inside 'D' drive.
+
+step4:
+-----
+	Open the notepad and develop simple Hello World program.
+	ex:
+		class Test
+		{
+			public static void main(String[] args)
+			{
+				System.out.println("Hello World");
+			}	
+		}
+step5:
+------
+	Save above program with same name as class name inside "javaprog" location.
+
+step6:
+------
+	Open the command prompt from "javaprog" location.
+
+step7:
+-------
+	Compile above program by using below command.
+	ex:
+		javac   Test.java
+				|
+				filename 
+
+step8:
+-------
+	Execute above program by using below command.
+	ex:
+		java    Test 
+			|
+			classname    
+
+Interview Questions 
+====================
+
+Q) What are the features of java?
+
+We have following important features in java.
+
+1) Simple 
+2) Object Oriented 
+3) Platform independent 
+4) Portable 
+5) Architecture Neutral 
+6) Multithreaded
+7) Highly secured 
+8) Robust 
+9) Distributed 
+10) Dynamic 
+and etc.
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

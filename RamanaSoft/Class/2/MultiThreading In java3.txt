@@ -1,0 +1,328 @@
+Java join() method in threads
+=============================
+
+The join() method in Java is provided by the java.lang.Thread class that permits one thread to wait until the other thread to finish its execution.
+
+The current thread remains in the wait state until the thread on which the join() method is invoked has achieved its dead state. If interruption of the thread occurs, then it throws the InterruptedException.
+
+Example of join() method
+------------------------
+
+package Threads;
+
+public class TestJoin extends Thread {
+
+	public void run() {
+		for (int i = 1; i <= 5; i++) {
+			try {
+				Thread.sleep(500);
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+			System.out.println(i);
+		}
+	}
+
+	public static void main(String[] args) {
+
+		TestJoin t1 = new TestJoin();
+
+		TestJoin t2 = new TestJoin();
+		TestJoin t3 = new TestJoin();
+
+		t1.start();
+		try {
+			t1.join();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+		t2.start();
+
+		t3.start();
+
+	}
+
+}
+
+Note : The above example can be done by passing mls(milliseconds) in join method as arguement
+ ex: t1.join(1000);
+Try it.
+
+Naming Thread and Current Thread
+---------------------------------
+
+The Thread class provides methods to change and get the name of a thread. By default, each thread has a name, i.e. thread-0, thread-1 and so on. By we can change the name of the thread by using the setName() method. The syntax of setName() and getName() methods.
+
+public String getName(): is used to return the name of a thread.  
+public void setName(String name): is used to change the name of a thread. 
+
+We can also set the name of a thread directly when we create a new thread using the constructor of the class.
+
+Example:
+-------
+
+package Threads;
+
+public class TestThreadName extends Thread {
+	
+	//constructor
+//	TestThreadName(String name){
+//		super(name);
+//	}
+	
+
+        public void run() {
+		System.out.println("running");
+	}
+
+	public static void main(String[] args) {
+		
+                //setting names by using constructor
+
+//		TestThreadName t1= new TestThreadName("abc");
+//		TestThreadName t2 = new TestThreadName("def");
+		
+		TestThreadName t1= new TestThreadName();
+		TestThreadName t2 = new TestThreadName();
+		
+                t1.setName("HI");
+		System.out.println("Name of t1:"+t1.getName());
+		System.out.println("Name of t2:"+t2.getName());
+		
+		t1.start();
+		t2.start();
+		
+		
+	}
+
+}
+
+Example of cuurentThread()
+--------------------------
+
+package Threads;
+
+public class TestMain {
+	
+	static void run() {
+		System.out.println(Thread.currentThread().getName());
+	}
+
+	public static void main(String[] args) {
+		
+		run();
+
+	}
+
+}
+
+Priority of Thread
+-------------------
+
+Each thread has a priority. Priorities are represented by a number between 1 and 10. In most cases, the thread scheduler schedules the threads according to their priority (known as preemptive scheduling). But it is not guaranteed because it depends on JVM specification that which scheduling it chooses. Note that not only JVM a Java programmer can also assign the priorities of a thread explicitly in a Java program.
+
+Let's discuss the setter and getter method of the thread priority.
+
+public final int getPriority(): The java.lang.Thread.getPriority() method returns the priority of the given thread.
+
+public final void setPriority(int newPriority): The java.lang.Thread.setPriority() method updates or assign the priority of the thread to newPriority. The method throws IllegalArgumentException if the value newPriority goes out of the range, which is 1 (minimum) to 10 (maximum).
+
+3 constants defined in Thread class:
+-----------------------------------
+public static int MIN_PRIORITY
+public static int NORM_PRIORITY
+public static int MAX_PRIORITY
+
+Default priority of a thread is 5 (NORM_PRIORITY). The value of MIN_PRIORITY is 1 and the value of MAX_PRIORITY is 10.
+
+Example:
+-------
+
+package Threads;
+
+public class ThreadPriority extends Thread {
+
+	public void run() {
+
+		System.out.println("Inside Run()");
+	}
+
+	public static void main(String[] args) {
+
+		ThreadPriority t1 = new ThreadPriority();
+
+		ThreadPriority t2 = new ThreadPriority();
+
+		ThreadPriority t3 = new ThreadPriority();
+		
+		System.out.println("priority of thread1:"+t1.getPriority());
+		
+		System.out.println("priority of thread1:"+t2.getPriority());
+		
+		System.out.println("priority of thread1:"+t3.getPriority());
+		
+//		t1.setPriority(3);
+//		
+//		t2.setPriority(6);
+//		
+//		t3.setPriority(9);
+//		
+//		System.out.println("changed priority of thread1:"+t1.getPriority());
+//		
+//		System.out.println("changed priority of thread1:"+t2.getPriority());
+//		
+//		System.out.println("changed priority of thread1:"+t3.getPriority());
+//		
+		Thread.currentThread().setPriority(15);
+		
+		System.out.println("priority of main thread:"+Thread.currentThread().getPriority());
+	}
+
+}
+
+
+Note: Try with different scenarios. Like passing priority values which are not in limit.
+
+Daemon Thread
+--------------
+
+Daemon thread in Java is a service provider thread that provides services to the user thread. Its life depend on the mercy of user threads i.e. when all the user threads dies, JVM terminates this thread automatically. 
+
+
+There are many java daemon threads running automatically e.g. gc, finalizer etc.
+
+You can see all the detail by typing the jconsole in the command prompt. The jconsole tool provides information about the loaded classes, memory usage, running threads etc.
+
+.It provides services to user threads for background supporting tasks. It has no role in life than to serve user threads.
+
+.Its life depends on user threads.
+
+.It is a low priority thread.
+
+Methods for Java Daemon thread by Thread class
+----------------------------------------------
+The java.lang.Thread class provides two methods for java daemon thread.
+
+public void setDaemon(boolean status)--->is used to mark the current thread as daemon thread or user thread.
+public boolean isDaemon()----->is used to check that current is daemon.
+
+Example:
+-------
+
+package Threads;
+
+public class TestDaemon extends Thread {
+
+	public void run() {
+
+		if (Thread.currentThread().isDaemon()) {
+			System.out.println("Yes,Daemon");
+		} else {
+			System.out.println("user Thread");
+		}
+	}
+
+	public static void main(String[] args) {
+
+		TestDaemon t1 = new TestDaemon();
+
+		TestDaemon t2 = new TestDaemon();
+
+		TestDaemon t3 = new TestDaemon();
+
+		// t1 is set as daemon
+		t1.setDaemon(true);
+		t1.start();
+		t2.setDaemon(true);
+		t2.start();
+		t3.start();
+
+	}
+
+}
+
+
+Thread pool in java
+-------------------
+
+Server Programs such as database and web servers repeatedly execute requests from multiple clients and these are oriented around processing a large number of short tasks. An approach for building a server application would be to create a new thread each time a request arrives and service this new request in the newly created thread.
+
+Since active threads consume system resources, a JVM creating too many threads at the same time can cause the system to run out of memory. This necessitates the need to limit the number of threads being created.
+
+Java provides the Executor framework which is centered around the Executor interface, its sub-interface –ExecutorService and the class-ThreadPoolExecutor, which implements both of these interfaces. By using the executor, one only has to implement the Runnable objects and send them to the executor to execute.
+
+Thread pool Example:
+-------------------
+TaskPool.java
+-------------
+
+
+package Threads;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class TaskPool implements Runnable {
+	
+	private String name;
+	
+	public TaskPool(String n) {
+		name = n;
+	}
+	
+	public void run() {
+		
+		try {
+			for(int i=0;i<=5;i++) {
+				if(i==0) {
+					Date d= new Date();
+					SimpleDateFormat s = new SimpleDateFormat("hh:mm:ss");
+					System.out.println("Initialization time for task name-"+name+"=" +s.format(d));
+				}else {
+					Date d = new Date();
+					SimpleDateFormat s= new SimpleDateFormat("hh:mm:ss");
+					System.out.println("Execution time for task name"+name+"="+s.format(d));
+				}
+				Thread.sleep(1000);
+			}
+		}catch(InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+
+TestPoolExec.java
+-----------------
+
+package Threads;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class TestPoolExec {
+	
+	static final int MAX_T=3;
+
+	public static void main(String[] args) {
+		
+		Runnable r1 = new TaskPool("task 1");
+		Runnable r2 = new TaskPool("task 2");
+		Runnable r3 = new TaskPool("task 3");
+		Runnable r4 = new TaskPool("task 4");
+		Runnable r5 = new TaskPool("task 5");
+		
+		ExecutorService e = Executors.newFixedThreadPool(MAX_T);
+		
+		e.execute(r1);
+		e.execute(r2);
+		e.execute(r3);
+		e.execute(r4);
+		e.execute(r5);
+		
+		e.shutdown();
+
+	}
+
+}

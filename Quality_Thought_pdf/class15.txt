@@ -1,0 +1,574 @@
+Operators 
+==========
+Operator is a symbol which is used to perform some operations on operands.
+
+ex:
+	c = a + b;
+
+	Here a,b and c are operands.
+	Here = and + are operators.
+
+We have following list of operators in java.
+
+1) Assignment operators 
+
+2) Conditional/Ternary operators 
+
+3) Logical operators 
+
+4) Bitwise operators 
+
+5) Arithmetic operators 
+
+6) Relational operators 
+
+7) Shift operators 
+
+8) Unary operators 
+
+1) Assignment operators 
+------------------------
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int i=10;
+		
+		i=20;
+		
+		i=30;
+		
+		System.out.println(i); 
+	}
+}
+Note:
+----
+	Reinitialization is possible in java
+
+ex:
+----
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		final int i=10;
+		
+		i=20;
+		
+		i=30;
+		
+		System.out.println(i); // C.T.E 
+	}
+}
+
+Note:
+------
+	We can't modify final variable.
+
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int i = 1,2,3,4,5;
+		
+		System.out.println(i); // C.T.E 
+	}
+}
+Note:
+-----
+	We can't assign more then one value at a time.
+
+ex:
+----
+class Test  
+{
+	//global variable 
+	static int i=100;
+	
+	public static void main(String[] args) 
+	{
+		//local variable 
+		int i=200;
+		
+		System.out.println(i);
+	}
+}
+Note:
+-----
+	Here priority goes to local variable
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int i=10;
+		
+		i+=5; // i = i + 5
+		
+		System.out.println(i); // 15
+	}
+}
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int i=10;
+		
+		i-=15; // i = i - 15
+		
+		System.out.println(i); // -5
+	}
+}
+
+
+ex:
+----
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int i=10;
+		
+		i*=2; // i = i * 2 
+		
+		System.out.println(i); // 20
+	}
+}
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int i=10;
+		
+		i/=5; // i = i /  5 
+		
+		System.out.println(i); // 2
+	}
+}
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int i=10;
+		
+		i/=20; // i = i / 20
+		
+		System.out.println(i); // 0
+	}
+}
+
+ex:
+----
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int i=10;
+		
+		i%=2; // i = i % 2
+		
+		System.out.println(i); // 0
+	}
+}
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int i=10;
+		
+		i%=3; // i = i % 3
+		
+		System.out.println(i); // 1
+	}
+}
+
+ex:
+----
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int i=25;
+		
+		i%=30; // i = i % 30
+		
+		System.out.println(i); // 25
+	}
+}
+
+2) Ternary operators 
+---------------------
+syntax:
+------
+	(condition)?stmt1:stmt2;
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str = (5>2)?"Hi":"Bye";
+		
+		System.out.println(str); // Hi 
+	}
+}
+
+ex:
+--
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int i = (5>20)?1:0;
+		
+		System.out.println(i); // 0
+	}
+}
+
+ex:
+----
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		boolean b  = (5>2)?true:false;
+		
+		System.out.println(b); // true 
+	}
+}
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		char ch  = (5>20)?'T':'F';
+		
+		System.out.println(ch); // F 
+	}
+}
+
+Q) Write a java program to find out greatest of two numbers?
+
+import java.util.Scanner;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the first number :");
+		int a = sc.nextInt(); // 5
+		
+		System.out.println("Enter the second number :");
+		int b = sc.nextInt(); // 10
+		
+		int max = (a>b)?a:b;
+		
+		System.out.println(max+" is greatest");
+	}
+}
+
+
+Q) Write a java program to find out greatest of three numbers?
+
+import java.util.Scanner;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the first number :");
+		int a = sc.nextInt(); // 5
+		
+		System.out.println("Enter the second number :");
+		int b = sc.nextInt(); // 10
+		
+		System.out.println("Enter the third number :");
+		int c = sc.nextInt(); // 7
+		
+		int max = (a>b)?((a>c)?a:c):((b>c)?b:c);
+		
+		System.out.println(max+" is greatest");
+	}
+}
+
+
+
+
+
+3) Logical operators 
+---------------------
+
+Logical AND operator (&&)
+-------------------------
+Logical AND operator deals with boolean values either true or false.
+
+Truth table 
+------------
+T	T	= T
+T	F	= F
+F	T	= F 
+F	F	= F 
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		System.out.println(true && true); //true 
+		System.out.println(true && false); //false 	
+		System.out.println(false && true); //false 	
+		System.out.println(false && false); //false 	
+	}
+}
+
+ex:
+----
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		boolean  b =(5>2) && (6<10);
+		
+		System.out.println(b); // true 
+	}
+}
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		boolean  b =(5>2) && (6<1);
+		
+		System.out.println(b); // false 
+	}
+}
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		boolean  b =(5>20) && (6<1);
+		
+		System.out.println(b); // false 
+	}
+}
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str = ((true && false))?"Welcome":"Thankyou";
+		
+		System.out.println(str); // Thankyou
+	}
+}
+
+
+Logical OR operator (||)
+-------------------------
+Logical OR operator deals with boolean values either true or false.
+
+Truth table 
+-----------
+T	T	= T
+T	F	= T
+F	T	= T
+F	F	= F 
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		System.out.println(true || true); // true 
+		System.out.println(true || false); // true 
+		System.out.println(false || true); // true 
+		System.out.println(false || false); // false 
+	}
+}
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		boolean b = (5>20) || (6<1);
+		
+		System.out.println(b); // false 
+	}
+}
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		boolean b = (5>2) || (6<1);
+		
+		System.out.println(b); // true 
+	}
+}
+
+ex:
+----
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		boolean b = (5>2) || (6<1) && (10 == 10);
+		
+		System.out.println(b); // true 
+	}
+}
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		boolean b = (5>20) || (6<1) && (10 == 10);
+		
+		System.out.println(b); // false
+	}
+}
+
+Logical not operator (!)
+------------------------
+Logical NOT operator deals with boolean values either true or false.
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		boolean b = !(5>20);
+		
+		System.out.println(b); // true 
+	}
+}
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		boolean b = !(5>2);
+		
+		System.out.println(b); // false
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

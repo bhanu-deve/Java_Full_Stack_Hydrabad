@@ -1,0 +1,321 @@
+Servlets 
+=========
+It is a dynamic web resource program that enhance the functionality of web server, proxy server or IDE's server.
+
+or
+
+It is a java based dynamic web resource program that is used to generate dynamic web pages.
+
+or
+
+It is a single instance multithread java base dynamic web resource program that is used to develop web applications.
+
+Diagram: servlet2.1
+
+
+Servlet's API
+=============
+API is a collection of packages.
+ex:
+	javax.servlet.*;
+	javax.servlet.http.*;
+
+Steps to develop first web application having servlet program as web resource program 
+======================================================================================
+Diagram: servlet2.2
+
+Deployment Directory Structure 
+------------------------------
+DateApp
+|
+|---Java Resources
+	|
+	|------src
+		|
+		|---com.ihub.www
+			|
+			|---DateSrv.java
+|---WebContent
+	|
+	|----WEB-INF
+		|
+		|---web.xml 
+
+step1:
+------
+	Launch eclipse by choosing workspace location.
+
+step2:
+------		
+	Create a dynamic web project i.e DateApp.
+	ex:
+		File --> New --> Dynamic Web Project --> Project : DateApp --> Next 
+		--> Next --> select generate web.xml file --> Finish.
+
+step3:
+-----
+	Add "servlet-api.jar" file in project build path.
+	ex:
+		right click to project --> build path --> configure build path -->
+		libraries --> select classpath --> Add External jars --> select servlet-api.jar
+		file --> apply and close.
+
+step4:
+-----
+	Create "com.ihub.www" package inside "src" folder.
+
+step5:
+------
+	Create a DateSrv.java file inside "com.ihub.www" package.
+
+DateSrv.java
+-----------
+package com.ihub.www;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Date;
+import javax.servlet.GenericServlet;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+
+public class DateSrv extends GenericServlet
+{
+	public void service(ServletRequest req,ServletResponse res)throws ServletException,IOException 
+	{
+		PrintWriter pw = res.getWriter();
+		res.setContentType("text/html");
+		
+		Date d = new Date();
+		pw.println("<center><h1>Current Date and Time : <br> "+d+" </h1></center>");
+		
+		pw.close();
+	}
+}
+	
+step6:
+------
+	Configure each servlet program in web.xml file.
+	
+web.xml 
+--------
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  
+  <servlet>
+  		<servlet-name>DateSrv</servlet-name>
+  		<servlet-class>com.ihub.www.DateSrv</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  		<servlet-name>DateSrv</servlet-name>
+  		<url-pattern>/test</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
+
+step7:
+-----
+	Add Tomcat server to eclipse IDE.
+	ex:
+		window --> preferences --> server --> Runtime Environments -->
+		Add --> Select Apache Tomcat 9.x --> Select Tomcat installation directory
+		--> Finish --> Apply and ok.
+
+step8:
+------
+	Run dynamic web project.
+	ex:
+		right click to DateApp project --> run as --> Run on server -->
+		Select Apache Tomcat 9 --> Next --> Finish.
+
+step9:
+-----
+	Test the application by using below request  url.
+	ex:
+		http://localhost:2525/DateApp/test 
+
+Note:
+-----
+If there is a problem with web.xml file then we will get 404 error.
+
+If there is a problem with servlet then we will get 500 error.
+
+
+
+Types of URL Patterns 
+======================
+Every servlet program recognize by using url pattern only.
+
+Or web server, client and other web resource programs recognize each servlet by using url pattern.
+
+URL pattern will hide technology name from the outsider for security reason.
+
+We have three types of url patterns.
+
+1) Exact Match Url pattern
+
+2) Directory Match Url pattern 
+
+3) Extension Match Url pattern 
+
+Every server is designed to support above three url patterns.
+
+
+1) Exact Match Url pattern
+---------------------------
+It starts with  forward slash '/' followed by a name.
+
+ex:
+	web.xml 
+	-------
+		<url-pattern>/test</url-pattern>
+	
+	request url 
+	-----------
+		http://localhost:2525/DateApp/test   //valid 
+		http://localhost:2525/DateApp/best   //invalid 
+		http://localhost:2525/DateApp/x/test //invalid  
+
+
+2) Directory Match Url pattern 
+-------------------------------
+It starts with '/' symbol and ends with '*' symbol.
+
+ex:
+	web.xml 
+	-------
+		<url-pattern>/x/y/*</url-pattern>
+
+	request url 
+	-----------
+		http://localhost:2525/DateApp/x/y/z       //valid 
+		http://localhost:2525/DateApp/x/y/z/test  //valid  
+		http://localhost:2525/DateApp/y/x/z       //invalid 
+
+
+3) Extension Match Url pattern
+--------------------------
+It starts with '*' symbol having some extension.
+
+ex:
+	web.xml 
+	-------
+		<url-pattern>*.do</url-pattern>
+
+	request url
+	-----------
+		http://localhost:2525/DateApp/test         // invalid 	
+		http://localhost:2525/DateApp/test.do      // valid  
+		http://localhost:2525/DateApp/test/x/y.do  // valid  
+
+
+
+MIME Types 
+===========
+MIME stands for Multipurpose Internet Mail Extension.
+
+MIME describes in how many formats we can display the output in servlets.
+
+There are four formats to display the output in servlets.
+
+1) text/html 
+----------
+	It is used to display the output in html format.
+
+2) text/xml 
+------------
+	It is used to display the output in xml format.
+
+3) application/ms-word
+--------------------
+	It is used to display the output in word format. 
+
+4) application/vnd.ms-excel 
+---------------------------
+	It is used to display the output in excel format.
+
+
+HTML Table 
+==========
+<table border="1" align="center">
+	<tr>
+		<th>No</th>
+		<th>Name</th>
+	</tr>
+	<tr>
+		<td>101</td>
+		<td>Alan</td>
+	</tr>
+</table>
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

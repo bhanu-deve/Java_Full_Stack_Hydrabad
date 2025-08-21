@@ -1,0 +1,357 @@
+Set 
+=====
+It is a child interface of Collection interface.
+
+If we want to represent group of individual objects in a single entity where duplicate objects are not allowed and order is not preserved then we need to use Set interface.
+
+Diagram: class45.1
+
+
+HashSet 
+========
+The underlying data structure is Hashtable.
+
+Duplicate objects are not allowed.
+
+Insertion order is not preserved because it takes hashcode of an object.
+
+Hetrogeneous objects are allowed.
+
+Null insertion is possible.
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		HashSet hs = new HashSet();
+		hs.add("one");
+		hs.add("five");
+		hs.add("ten");
+		hs.add("seven");
+		System.out.println(hs); //[one, seven, ten, five]
+		
+		hs.add("one");
+		System.out.println(hs); //[one, seven, ten, five]
+		
+		hs.add(10);
+		System.out.println(hs); //[one, seven, 10, ten, five]
+		
+		hs.add(null);
+		System.out.println(hs); //[null, one, seven, 10, ten, five]
+	}
+}
+
+
+LinkedHashSet 
+==============
+It is a child class of HashSet class.
+
+LinkedHashSet is exactly same as HashSet class with following differences.
+
+HashSet						LinkedHashSet 
+---------					-------------
+The underlying data structure is Hashtable.	The underlying data structure is Hashtable and 
+						LinkedList.
+
+Insertion order is not preserved.		Insertion order is preserved.
+
+It is introduced in 1.2v.			It is introduced in 1.4.
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		LinkedHashSet lhs = new LinkedHashSet();
+		lhs.add("one");
+		lhs.add("five");
+		lhs.add("ten");
+		lhs.add("seven");
+		System.out.println(lhs); //[one,five,ten,seven]
+		
+		lhs.add("one");
+		System.out.println(lhs); //[one,five,ten,seven]
+		
+		lhs.add(10);
+		System.out.println(lhs); //[one,five,ten,seven,10]
+		
+		lhs.add(null);
+		System.out.println(lhs); //[one,five,ten,seven,10,null]
+	}
+}
+
+
+Q) Write a java program to display distinct elements from given array?
+
+input:
+	1 2 2 3 3 3 4 4 4 4
+
+output:
+	1 2 3 4 
+
+
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int[] arr = {1,2,2,3,3,3,4,4,4,4};
+		
+		Set<Integer> set = new LinkedHashSet<Integer>();
+		
+		for(int i : arr)
+		{
+			set.add(i);
+		}
+		
+		for(int i : set)
+		{
+			System.out.print(i+" ");
+		}
+	}
+}
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Set<Integer> set = Set.of(6,7,1,3,9);
+	
+		System.out.println(set);
+	}
+}
+
+TreeSet 
+========
+The underlying data structure is Balanced Tree.
+
+Duplicate objects are not allowed.
+
+Insertion order is not preserved because it takes sorting order of an object.
+
+Hetrogeneous objects are not allowed. If we insert then we will get ClassCastException.
+
+Null insertion is not possible. If we insert then we will get NullPointerException. 
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		TreeSet ts = new TreeSet();
+		ts.add(6);
+		ts.add(1);
+		ts.add(10);
+		ts.add(5);
+		System.out.println(ts); //[1,5,6,10]
+		
+		ts.add(1);
+		System.out.println(ts); //[1,5,6,10]
+		
+		//ts.add("Hi");
+		//System.out.println(ts); // R.E ClassCastException
+		
+		//ts.add(null);
+		//System.out.println(ts); // R.E NullPointerException
+	}
+}
+
+Q) What is the difference between Comparable and Comparator interface ?
+
+Comparable 					
+-----------
+Comparable is an interface which is present in java.lang package.
+
+Comparable interface contains only one method i.e compareTo() method.
+
+If we depend upon default natural sorting order then we need to use Comparable interface.
+
+ex:
+	obj1.compareTo(obj2)
+	
+	It returns -ve if obj1 comes before obj2
+	It returns +ve if obj1 comes after obj2
+	It returns 0 if both objects are same
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("A".compareTo("Z"));  // -25	
+		
+		System.out.println("Z".compareTo("A"));  // 25
+		
+		System.out.println("L".compareTo("L"));  // 0
+	}
+}
+
+Comparator
+------------
+Comparator is an interface which is present in java.util package.
+
+Comparator interface contains following two methods i.e compare() and equals() method.
+
+If we depend upon customized sorting order then we need to use Comparator interface.
+
+ex:
+	public int compare(Object obj1,Object obj2)
+	
+	It returns +ve if obj1 comes before obj2
+	It returns -ve if obj1 comes after obj2
+	It returns 0 if both objects are same 
+
+In Compartor implementation of compare() method is mandatory.
+
+But implementation of equals() method is optional because it is present in Object class which is available to the java program via inheritance.
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		TreeSet<Integer> ts = new TreeSet<Integer>(new MyComparator());
+		ts.add(6);
+		ts.add(1);
+		ts.add(10);
+		ts.add(5);
+		System.out.println(ts); //[10, 6, 5, 1]
+		
+	}
+}
+class MyComparator implements Comparator 
+{
+	public int compare(Object obj1,Object obj2)
+	{
+			Integer i1 = (Integer) obj1;
+			Integer i2 = (Integer) obj2;
+			
+			if(i1<i2)
+				return 1;
+			else if(i1>i2)
+				return -1;
+			else 
+				return 0;
+	}
+}
+
+ex:
+--
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		TreeSet<Integer> ts = new TreeSet<Integer>(new MyComparator());
+		ts.add(6);
+		ts.add(1);
+		ts.add(10);
+		ts.add(5);
+		System.out.println(ts); //[1, 5, 6, 10]
+		
+	}
+}
+class MyComparator implements Comparator 
+{
+	public int compare(Object obj1,Object obj2)
+	{
+			Integer i1 = (Integer) obj1;
+			Integer i2 = (Integer) obj2;
+			
+			if(i1<i2)
+				return -1;
+			else if(i1>i2)
+				return 1;
+			else 
+				return 0;
+	}
+}
+
+
+Q) Write a java program to two compare two dates?
+
+
+import java.time.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		LocalDate date1 = LocalDate.now();
+		
+		LocalDate date2 = LocalDate.of(2025,06,10);
+		
+		if(date1.compareTo(date2)>0)
+			System.out.println("date1 is biggest");
+		else if(date1.compareTo(date2)<0)
+			System.out.println("date2 is biggest");
+		else
+			System.out.println("Both are same");
+		
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

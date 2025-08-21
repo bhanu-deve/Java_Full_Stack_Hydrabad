@@ -1,0 +1,728 @@
+Singleton class
+===============
+A class which allows us to create only one object is called singleton class.
+
+A singleton is a design pattern which ensures that a class can have only one instance.
+
+The main advantage of singleton class is performance is maintain and memory utilization will improve.
+
+To create a singleton class we required private constructor and static method.
+
+ex:
+---
+class Singleton 
+{
+	static Singleton single=null;
+	
+	private Singleton()
+	{
+		
+	}
+	public static Singleton getInstance()
+	{
+		if(single==null)
+		{
+			single = new Singleton();
+		}
+		
+		return single;
+	}
+}
+class  Test 
+{
+	public static void main(String[] args) 
+	{
+		Singleton s1 = Singleton.getInstance();
+		System.out.println(s1.hashCode());
+		
+		Singleton s2 = Singleton.getInstance();
+		System.out.println(s2.hashCode());
+	}
+}
+
+
+java.io package
+================
+
+
+File 
+=====
+It is used to check is there any "abc.txt" file already exist or not. If it is exit then 'f' simply refers to that file. If not exist then it will not create a physical file.
+ex:
+	File f = new File("abc.txt");
+
+ex:
+---
+import java.io.*;
+class  Test 
+{
+	public static void main(String[] args) 
+	{
+		File f = new File("abc.txt");
+		System.out.println(f.exists());
+	}
+}
+
+File object can be used to create a physical file.
+
+ex:
+---
+import java.io.*;
+class  Test 
+{
+	public static void main(String[] args)throws IOException  
+	{
+		File f = new File("abc.txt");
+		System.out.println(f.exists()); // false 
+		
+		f.createNewFile();
+		System.out.println(f.exists()); // true 
+	}
+}
+
+File object can be used to create a directory.
+
+ex:
+---
+import java.io.*;
+class  Test 
+{
+	public static void main(String[] args)throws IOException  
+	{
+		File f = new File("ihub");
+		System.out.println(f.exists()); // false 
+		
+		f.mkdir();
+		System.out.println(f.exists()); // true 
+	}
+}
+
+
+Q) Write a java program to create "javaprog" folder and inside create "Test.java" file?
+
+import java.io.*;
+class  Test 
+{
+	public static void main(String[] args)throws IOException  
+	{
+		File f1= new File("javaprog");
+		f1.mkdir();
+		
+		File f2 = new File("javaprog","Test.java");
+		f2.createNewFile();
+		
+		System.out.println("Please check the location");
+	}
+}
+
+
+FileWriter 
+===========
+It is used to insert character oriented data in a file.
+
+constructor 
+------------
+	File f = new File("aaa.txt");
+	FileWriter fw = new FileWriter(f);
+
+	or
+
+	FileWriter fw = new FileWriter(new File("aaa.txt"));
+
+	or
+
+	FileWriter fw = new FileWriter("aaa.txt");
+
+Note:
+----
+	FileWriter object creates a physical file if that file does not exist.
+
+Methods 
+-------
+
+1) write(int ch)
+------------
+	It is used to insert a character in a file.
+
+2) write(char[] ch)
+-------------------
+	It is used to insert collection of characters in a file.
+
+3) write(String s)
+----------------
+	It is used to insert string in a file.
+
+4) flush()
+--------
+	It gives guarantee that last character of a file is also inserted.
+
+5) close() 
+---------
+	It is used to close FileWriter object.
+
+ex:
+---
+import java.io.*;
+class  Test 
+{
+	public static void main(String[] args) 
+	{
+		try(FileWriter fw = new FileWriter("aaa.txt");)
+		{
+			fw.write(98); // b 
+			
+			fw.write("\n");
+			
+			char[] ch={'a','b','c'};
+			fw.write(ch);
+			
+			fw.write("\n");
+			
+			fw.write("ihub\ntalent");
+			
+			fw.flush();
+			
+			System.out.println("Please check the location");
+		}
+		catch (IOException ioe)
+		{
+			ioe.printStackTrace();
+		}
+	}
+}
+
+
+FileReader 
+===========
+It is used to read character oriented data from a file.
+
+constructor 
+----------
+	File f = new File("aaa.txt");
+	FileReader fr = new FileReader(f); 
+
+	or 
+
+	FileReader fr = new FileReader(new File("aaa.txt")); 
+
+	or
+
+	FileReader fr = new FileReader("aaa.txt");
+
+Note:
+----
+	FileWriter and FileReader can communicate with File directly.
+
+Methods 
+-------
+
+1) read() 
+---------
+	It reads next character from a file and returns unicode value. If next character is not 
+	available then it returns -1.
+
+2) read(char[] ch)
+-----------------
+	It is used to read collection of characters from file.
+
+3) close() 
+---------
+	It is used to close FileReader object.
+
+
+ex:1
+----
+import java.io.*;
+class  Test 
+{
+	public static void main(String[] args) 
+	{
+		try(FileReader fr = new FileReader("aaa.txt");)
+		{
+			int i = fr.read();
+			while (i!=-1)
+			{
+				System.out.print((char)i);
+				i = fr.read();
+			}
+		}
+		catch (IOException ioe)
+		{
+			ioe.printStackTrace();
+		}
+	}
+}
+
+ex:2
+-----
+import java.io.*;
+class  Test 
+{
+	public static void main(String[] args) 
+	{
+		try(FileReader fr = new FileReader(new File("aaa.txt"));)
+		{
+			char[] ch=new char[20];
+			
+			fr.read(ch);
+			
+			//for each loop
+			for(char c : ch)
+			{
+				System.out.print(c);
+			}
+			
+		}
+		catch (IOException ioe)
+		{
+			ioe.printStackTrace();
+		}
+	}
+}
+
+or 
+
+import java.io.*;
+class  Test 
+{
+	public static void main(String[] args) 
+	{
+		File f = new File("aaa.txt");
+		
+		try(FileReader fr = new FileReader(f);)
+		{
+			char[] ch=new char[(int)f.length()];
+			
+			fr.read(ch);
+			
+			//for each loop
+			for(char c : ch)
+			{
+				System.out.print(c);
+			}
+			
+		}
+		catch (IOException ioe)
+		{
+			ioe.printStackTrace();
+		}
+	}
+}
+
+Limitations with FileWriter and FileReader 
+===========================================
+While inserting the data using FileWriter we need to insert line seperators(\n) which is very headache for the programmer.
+
+While reading the data using FileReader we need to read character by character which is not convenient to the programmer.
+
+To overcome this limitation Sun Micro System introduced BufferedWriter and BufferedReader.
+
+
+BufferedWriter 
+===============
+It is used to insert character oriented data in a file.
+
+constructor 
+-----------
+
+	BufferedWriter bw = new BufferedWriter(Writer w);
+
+Note:
+-----
+	BufferedWriter can't communicate with File directly. It takes the support of Writer object.
+	ex:
+		FileWriter fw = new FileWriter("bbb.txt");
+		BufferedWriter bw = new BufferedWriter(fw);		
+
+		or 
+
+		BufferedWriter bw = new BufferedWriter(new FileWriter("bbb.txt"));
+
+Note:
+-----
+	If file does not exist then BufferedWriter will create a physical file.
+
+Methods
+------
+
+
+1) write(int ch)
+------------
+	It is used to insert a character in a file.
+
+2) write(char[] ch)
+-------------------
+	It is used to insert collection of characters in a file.
+
+3) write(String s)
+----------------
+	It is used to insert string in a file.
+
+4) flush()
+--------
+	It gives guarantee that last character of a file is also inserted.
+
+5) close() 
+---------
+	It is used to close FileWriter object.
+
+6) newLine()
+------------
+	It is used to insert a new line a file.
+
+ex:
+---
+import java.io.*;
+class  Test 
+{
+	public static void main(String[] args) 
+	{
+		try(BufferedWriter bw = new BufferedWriter(new FileWriter("bbb.txt"));)
+		{
+			bw.write(98); // b 
+			
+			bw.newLine();
+			
+			char[] ch={'a','b','c'};
+			bw.write(ch); 
+			
+			bw.newLine();
+			
+			bw.write("ihub");
+			
+			bw.flush();
+			
+			System.out.println("Please check the location");
+		}
+		catch (IOException ioe)
+		{
+			ioe.printStackTrace();
+		}
+	}
+}
+
+
+BufferedReader 
+==============
+It is a enhanced reader to read character oriented data from a file.
+
+The main advanced of BufferedReader over FileReader is we can read the data line by line instead of character by characater.
+
+constructor 
+----------
+	BufferedReader br = new BufferedReader(Reader r);
+
+Note:
+----
+	BufferedReader can't communicate with file directly. it takes the support of Reader object.
+	ex:
+		FileReader fr = new FileReader("bbb.txt");
+		BufferedReader br = new BufferedReader(fr);
+
+		or 
+
+		BufferedReader br = new BufferedReader(new FileReader("bbb.txt"));
+
+Methods 
+--------
+1) read() 
+---------
+	It reads next character from a file and returns unicode value. If next character is not 
+	available then it returns -1.
+
+2) read(char[] ch)
+-----------------
+	It is used to read collection of characters from file.
+
+3) close() 
+---------
+	It is used to close FileReader object.
+
+4) readLine()
+----------
+	It is used to read next line from a file . If next line is not avaiable then it will return 
+	null.
+
+ex:
+---
+import java.io.*;
+class  Test 
+{
+	public static void main(String[] args) 
+	{
+		try(BufferedReader br = new BufferedReader(new FileReader("bbb.txt"));)
+		{
+			String line = br.readLine();
+			
+			while(line!=null)
+			{
+				System.out.println(line);
+				
+				line = br.readLine();
+			}
+		}
+		catch (IOException ioe)
+		{
+			ioe.printStackTrace();
+		}
+	}
+}
+
+PrintWriter 
+===========
+It is a enhanced writer to writer character oriented data in a file.
+
+The main advantage of PrintWriter over FileWriter and BufferedWriter is we can insert any type of data. Assume if we want to insert primitive values then we can use PrintWriter object.
+
+constructor 
+---------
+	PrintWriter pw = new PrintWriter(File f);
+	PrintWriter pw = new PrintWriter(Writer w);
+
+Note:
+-----
+	PrintWriter can communicate with file directly and it will take support of FileWriter object.
+	ex:
+		PrintWriter pw = new PrintWriter("ccc.txt");
+		or 
+		PrintWriter pw = new PrintWriter(new FileWriter("ccc.txt")); 
+
+Methods 
+--------
+1) write(int ch)
+------------
+	It is used to insert a character in a file.
+
+2) write(char[] ch)
+-------------------
+	It is used to insert collection of characters in a file.
+
+3) write(String s)
+----------------
+	It is used to insert string in a file.
+
+4) flush()
+--------
+	It gives guarantee that last character of a file is also inserted.
+
+5) close() 
+---------
+	It is used to close FileWriter object.
+
+print(int i)
+print(String s)
+print(double d)
+print(boolean b)
+print(char ch) 
+
+or 
+
+println(int i)
+println(String s)
+println(double d)
+println(boolean b)
+println(char ch) 
+
+ex:
+---
+import java.io.*;
+class  Test 
+{
+	public static void main(String[] args) 
+	{
+		try(PrintWriter pw = new PrintWriter("ccc.txt");)
+		{
+			pw.write(98); // b 
+			pw.println(98); // 98
+			
+			pw.println('a');//a 
+			
+			pw.println(10.5d); // 10.5
+			
+			pw.println("hello"); // hello 
+			
+			pw.println(false); // false 
+			
+			pw.flush();
+			
+			System.out.println("Please check the location");
+		}
+		catch (IOException ioe)
+		{
+			ioe.printStackTrace();
+		}
+	}
+}
+
+
+Various ways to provide input values from keyboards
+===================================================
+There are four ways to provide inputs from keyboard.
+
+1) Command line argument 
+
+2) BufferedReader 
+
+3) Console 
+
+4) Scanner 
+
+
+1) Command line argument
+------------------------
+
+class  Test 
+{
+	public static void main(String[] args) 
+	{
+		String name = args[0];
+		System.out.println("Welcome :"+name);
+	}
+}
+o/p:
+	javac  Test.java
+	java   Test DennisRitchie 
+
+
+
+2) BufferedReader 
+-------------------
+import java.io.*;
+class  Test 
+{
+	public static void main(String[] args)throws IOException  
+	{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		System.out.println("Enter the name :");
+		String name = br.readLine();
+		
+		System.out.println("Welcome :"+name);
+	}
+}
+
+3) Console 
+------------
+import java.io.*;
+class  Test 
+{
+	public static void main(String[] args)throws IOException  
+	{
+		Console c = System.console();
+		
+		System.out.println("Enter the name :");
+		String name = c.readLine();
+		
+		System.out.println("Welcome :"+name);
+	}
+}
+
+
+4) Scanner
+---------
+import java.util.*;
+class  Test 
+{
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the id :");
+		int id = sc.nextInt();
+		
+		System.out.println("Enter the name :");
+		String name = sc.next();
+		
+		System.out.println("Enter the salary :");
+		double salary = sc.nextDouble();
+		
+		System.out.println(id+" "+name+" "+salary);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

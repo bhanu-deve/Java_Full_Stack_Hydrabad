@@ -1,0 +1,301 @@
+Web application 
+===============
+A web application is a collection of web resource programs having capability to generate web pages. 
+
+We have two types of web pages.
+
+1) Static web pages / Passive web pages
+----------------------------------
+	Static web pages show fixed content.
+	ex:
+		Home page 
+		Aboutus page 
+		facebook login page 
+		email login page 
+		and etc.
+
+2) Dynamic web pages / Active web pages  
+--------------------------------------
+	Dynamic web pages show dynamic content.
+	ex:
+		cricket live score page 
+		stock market share value page 
+		gmail inbox page 
+		and etc.
+
+We have two types of web resource programs.
+
+1) Static web resource programs 
+------------------------------
+	Static web resource programs are used to generate static web pages.
+	ex:
+		HTML program 
+		CSS program 
+		Bootstrap program 
+		angularjs program
+		and etc.
+
+2) Dynamic web resource programs 
+---------------------------------
+	Dynamic web resource programs are used to develop dynamic web pages.
+	ex:
+		servlet program 
+		jsp program 
+		and etc.
+
+Based on the position and execution these web resource programs categories into two types.
+
+1) Client side web resource program 
+---------------------------------
+A web resource program which execute at client side (browser window) is called client side web resource program.
+
+All static web resource programs are called client side web resource program.
+
+ex:
+	HTML program 
+	CSS program 
+	Bootstrap program 
+	angularjs program 
+	and etc.
+
+
+2) Server side web resource program 
+-------------------------------------
+A web resource program which execute at server side is called server side web resource program.
+
+All dynamic web resource programs are called server side web resource programs.
+
+ex:
+	servlet program 
+	jsp program 
+	and etc.
+
+
+Web Application and Web Resource Program execution 
+===================================================
+Java application will execute manually.
+
+Web application and web resource program will execute at the time when they have requested. Hence there is no chance of executing them manually.
+
+Diagram: servlet1.1
+
+With respect to the diagram:
+
+1) Enduser gives the request to web resource program.
+
+2) Web server traps that request and passes that request to appropriate web resource 
+   program. 
+
+3) Web resource program executes the logic to process the request.
+
+4) Web resource program communicates with database software if necessary.
+
+5) Web resource program gives output to web server.
+
+6) Web server sends result to browser window as dynamic web page.
+
+Note:
+----
+	The process of keeping the web application in a server is called deployment
+	and reverse is called undeployment.
+
+Web Server 
+==========
+A web server is a piece of software which is used to automate whole process of web application and web resource program execution.
+ex:
+	Tomcat, Resin and etc.
+
+Responsibilities of web server 
+------------------------------
+1) It takes continues request from client.
+
+2) It passes that request to appropriate web resource program.
+
+3) It provides environment to deploy and undeploy the web application.
+
+4) It will add middleware services only to deployed web applications.
+
+5) It allows client side web resource program to execute at browse window.
+
+6) It gathers the result from web resource program.
+
+7) It sends the output to browser window as dynamic response.
+
+8) It automates whole process of web application and web resource program execution.
+
+ex:
+	To execute java program we required JRE/JVM.
+	To execute servlet program we required servlet container.
+	To execute jsp program we required jsp container.
+
+
+Web Container
+==============
+It is a software application or a program that is used to manage whole life cycle of web resource programs i.e birth to death.
+
+Some part of industry considers servlet container and JSP container are web containers.
+
+Every server is designed to support servlet container and JSP container.
+
+Servlet container executes servlet program.
+
+Similarly, JSP container executes JSP program.
+
+Tomcat 
+======
+Type			:	Web Server
+
+Version			:	9.x
+
+Vendor			:	Apache Software Foundation
+
+Creator			:	James Duncan Davidson
+
+Website			:	https://tomcat.apache.org
+
+Port No			:	8080
+
+Servlet container	:	Catalina
+
+JSP container		:	Jasper 
+
+Download link		:
+
+https://drive.google.com/file/d/1u547booDvVY630rN4drEQ8c8lU0In7T6/view?usp=drive_link
+
+Tomcat Software Installation
+============================
+Double click to Tomcat software --> yes --> Next --> I Agree --> Select (Full) -->
+Next --> adminstrator login --> 
+username : admin  
+password: admin --> Next --> Next --> Install.
+
+
+Steps to set Tomcat server to manual mode 
+===========================================
+Goto services --> Select Apache Tomcat --> click to stop link --> double click to 
+Apache Tomcat --> startup type : manual --> apply --> ok.
+
+
+
+How to change the port number of Tomcat server
+=============================================
+Goto Tomcat9.0 --> config ---> server.xml --> 
+
+<Connector port="2525" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443"
+               maxParameterCount="1000"
+               />
+
+
+How to see Tomcat console page
+===============================
+1) First start Tomcat server from bin folder.
+    
+2) Type below request url in browser address bar.
+   ex:
+	http://localhost:2525	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

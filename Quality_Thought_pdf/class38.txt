@@ -1,0 +1,442 @@
+Q) Write a java program to sort the string?
+
+input:
+	deacbf
+output:
+	abcdef 
+
+ex:
+---
+import java.util.Arrays;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="deacbf";
+		
+		char[] carr = str.toCharArray();
+		
+		Arrays.sort(carr);
+		
+		str="";
+		for(char ch : carr)
+		{
+			str+=ch;
+		}
+		System.out.println(str);
+	}
+}
+
+Q) Write a java program to display reserve of a string?
+
+input:
+	hello 
+
+output:	
+	olleh 
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="hello";
+		
+		String rev="";
+		for(int i=str.length()-1;i>=0;i--)
+		{
+			rev+=str.charAt(i);
+		}
+		System.out.println(rev);
+	}
+}
+
+Q) Write a java program to check given string is palindrome or not?
+
+input:
+	racar 
+
+output:
+	It is a palindrome string 
+
+
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="racar";
+		
+		String rev="";
+		for(int i=str.length()-1;i>=0;i--)
+		{
+			rev+=str.charAt(i);
+		}
+		if(str.equals(rev))
+			System.out.println("It is a plaindrome string");
+		else
+			System.out.println("It is not a palindrome string");
+	}
+}
+
+
+Q) Write a java program to display reverse sentence?
+
+Input:
+	This is java class
+
+output:
+	class java is This 
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="This is java class";
+		
+		String[] sarr = str.split(" ");
+		
+		for(int i=sarr.length-1;i>=0;i--)
+		{
+			System.out.print(sarr[i]+" ");
+		}
+	}
+}
+
+Q) Write a java program to display reverse of a word in a sentence?
+
+Input:
+	This is java class
+
+output:
+	sihT si avaj ssalc 
+
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="This is java class";
+		
+		String[] sarr = str.split(" ");
+		
+		for(String s : sarr)
+		{
+			//display reverse
+			for(int i=s.length()-1;i>=0;i--)
+			{
+				System.out.print(s.charAt(i));
+			}
+			//add space 
+			System.out.print(" ");
+		}
+	}
+}
+
+
+Q) Write a java program to display the string in a given format?
+
+Input:
+	XYZ
+
+Output:
+	XY 
+	XZ
+	YX
+	YZ
+	ZX
+	ZY 
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="XYZ";
+		
+		for(int i=0;i<str.length();i++)
+		{
+			for(int j=0;j<str.length();j++)
+			{
+				if(i!=j)
+				{
+					System.out.println(str.charAt(i)+""+str.charAt(j));
+				}
+			}
+		}
+	}
+}
+
+Q) Write a java program to display palindrome strings?
+
+
+input:
+	racar is for madam students 
+
+output:
+	racar madam 
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="racar is for madam students";
+		
+		String[] sarr = str.split(" ");
+		
+		for(String s  : sarr)   // racar 
+		{
+			String rev="";
+			
+			//reading reverse 
+			for(int i=s.length()-1;i>=0;i--)
+			{
+				rev+=s.charAt(i);
+			}
+			
+			if(s.equals(rev))
+				System.out.print(s+" ");
+		}
+	}
+}
+
+Q) Write a java program to display the strings starting with uppercase letter?
+
+input:
+	this Is java Class for Students
+
+output:
+	Is Class Students 
+
+ex
+----
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="this Is java Class for Students";
+		
+		String[] sarr = str.split(" ");
+		
+		for(String s : sarr)
+		{
+			if(s.charAt(0)>='A' && s.charAt(0)<='Z')
+			{
+				System.out.print(s+" ");
+			}
+		}
+	}
+}
+
+Q) Write a java program to display duplicate and unique characters from given string?
+
+input:	
+	messissippi
+
+output:
+	Duplicate characters :  sip 
+	Unique characters :     mesip 
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="messissippi";
+		
+		String duplicate="";
+		String unique="";
+		
+		for(int i=0;i<str.length();i++)
+		{
+			String current = Character.toString(str.charAt(i));	
+			
+			if(unique.contains(current))
+			{
+				if(!duplicate.contains(current))
+				{
+					duplicate+=current;
+					continue;
+				}
+				else
+				{
+					continue;
+				}
+			}
+			unique+=current;
+		}
+		System.out.println("Duplicate characters :"+duplicate);
+		System.out.println("Unique characters :"+unique);
+	}
+}
+
+Q) Write a java program to display most repeating character from given string?
+
+input:
+	ihubtalentinstitute 
+
+output:
+	t repeating for 5 times 
+
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="ihubtalentinstitute";
+		
+		char element=' ';
+		int maxCount=0;
+		
+		for(int i=0;i<str.length();i++)
+		{
+			int cnt = 0;
+			
+			for(int j=0;j<str.length();j++)
+			{
+				if(str.charAt(i) == str.charAt(j))
+				{
+					cnt++;
+				}
+			}
+			if(cnt>maxCount)
+			{
+				maxCount=cnt;
+				element = str.charAt(i);
+			}
+		}
+		System.out.println(element+" repeating for "+maxCount+" times");
+	}
+}
+
+Q) Write a java program to encode the string?
+
+input:
+	1106
+
+output:
+	AAJF 
+
+
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="1106";
+		
+		for(int i=0;i<str.length();i++)
+		{
+			int n = Character.getNumericValue(str.charAt(i));
+			
+			if(n>0)
+			{
+				System.out.print((char)('A'+n-1));
+			}
+			else
+			{
+				int k = Integer.parseInt(str.substring(i-1,i+1));
+				System.out.print((char)('A'+k-1));
+			}
+		}
+	}
+}
+
+Q) Write a java program to deccode the string?
+
+input:
+	AAJF
+
+output:
+	1106
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="AAJF";
+		
+		for(int i=0;i<str.length();i++)
+		{
+			char ch = str.charAt(i);
+			
+			int n = ch - 'A' + 1;
+			
+			if(String.valueOf(n).contains("0"))
+			{
+				System.out.print(n%10);
+			}
+			else
+			{
+				System.out.print(n);
+			}
+		}
+	}
+}
+ 
+
+Q) Write a java program to display the string in a given format?
+
+input:
+	A1B2C3D4
+output:
+	ABBCCCDDDD
+
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="A1B2C3D4";
+		
+		for(int i=0;i<str.length();i++)
+		{
+			if(Character.isAlphabetic(str.charAt(i)))
+			{
+				System.out.print(str.charAt(i));
+			}
+			else
+			{
+				int n = Character.getNumericValue(str.charAt(i));
+				
+				for(int k=1;k<n;k++)
+				{
+					System.out.print(str.charAt(i-1));
+				}
+			}
+		}
+	}
+}
+
+Assignment 
+============
+Q) Write a java program to count number of uppercase letters, lowercase letters, digits , words and spaces>
+
+input:
+	This Is Java Class38
+
+output:
+	uppercase letters: 4 
+	lowercase letters : 11
+	Digits		  : 2 
+	words		 : 4
+	spaces		 : 3 
+	
+
+
+
+
+
+
+
+
+
+
+
+

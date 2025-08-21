@@ -1,0 +1,210 @@
+Datatypes
+=========
+Datatype describes what type of value we want to store inside a variable.
+
+Datatype also tells how much memory has to be created for a variable.
+
+In java, datatypes are divided into two types.
+
+Diagram: class6.1
+
+byte
+-----
+It is smallest datatype in java.
+
+Size : 1 byte (8 bits)
+
+Range : -128 to 127 (-2^7 to 2^7-1)
+
+ex:
+---
+	1) byte b = 10;
+           System.out.println(b); // 10
+
+	2) byte b = 130;
+           System.out.println(b); // C.T.E 
+
+	3) byte b = 10.5;
+           System.out.println(b); // C.T.E 
+
+
+short 
+-------
+It is a rarely used datatype in java.
+
+Size: 2 bytes (16 bits)
+
+Range : -32768 to 32767 (-2^15 to 2^15-1)
+
+ex:
+	1) byte b = 10;
+           short s = b;
+           System.out.println(s); // 10 
+
+	2) short s =true;
+           System.out.println(s); // C.T.E 
+
+	3) short s = "hi";
+           System.out.println(s); // C.T.E 
+
+int 
+----
+It is mostly used datatype in java.
+
+Size : 4 bytes (32 bits)
+
+Range : -2147483648 to 2147483647 (-2^31 to 2^31-1)
+
+ex:
+---
+	1) int i = 10.5;
+	   System.out.println(i); // C.T.E 
+
+	2) int i="true";
+           System.out.println(i); // C.T.E 	
+
+	3) int i='a';
+           System.out.println(i); // 97
+
+Note:
+------
+In java, for every character we have universal unicode value.
+ex:
+	a -- 97 
+	A -- 65 
+
+
+long 
+------
+If int datatype is not enough to hold large value then we need to use long datatype.
+
+Size : 8 bytes (64 bits)
+
+Range : (-2^63 to 2^63-1)
+
+ex:
+---
+	1) long l="A";
+	   System.out.println(l); // C.T.E 
+
+	2) long l=false;
+           System.out.println(l); // C.T.E 
+
+	3) long l=10.56;
+           System.out.println(l); // C.T.E 
+	
+	4) long l='A';
+           System.out.println(l); // 65
+
+
+Interview Questions 
+===================
+	
+Q) Write a java program to display size of byte datatype?
+
+class Test
+{
+	public static void main(String[] args)
+	{
+		System.out.println(Byte.BYTES);
+	}
+}
+
+
+Q) Write a java program to display size of short datatype?
+
+class Test
+{
+	public static void main(String[] args)
+	{
+		System.out.println(Short.BYTES);
+	}
+}
+
+Q) Write a java program to display size of int datatype?
+
+class Test
+{
+	public static void main(String[] args)
+	{
+		System.out.println(Integer.BYTES);
+	}
+}
+
+
+Q) Write a java program to display size of long datatype?
+
+class Test
+{
+	public static void main(String[] args)
+	{
+		System.out.println(Long.BYTES);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,308 @@
+Q) 
+Given a string representing a positive number, round it to the nearest multiple of 100.
+If the number is equally close to two multiples of 100, return the smaller one.
+
+Input:
+	str = "276";
+
+Output:
+	300
+
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str = "276";
+		
+		int n =Integer.parseInt(str);
+		
+		//lower multiple of 100 
+		int lower = (n/100)*100;
+		
+		//higher multiple of 100
+		int higher = ((n/100)+1)*100;
+		
+		int lowerDiff = n - lower; // 276 - 200 = 76
+		int higherDiff = higher - n;  // 300 - 276 = 24
+		
+		if(lowerDiff <= higherDiff)
+			System.out.println(lower);
+		else
+			System.out.println(higher);
+
+	}
+}
+
+
+Enum 
+=====
+Enum concept introduced in 1.5 version.
+
+Enum is a group of named constants.
+
+Enum is used to create our own datatype called enumerated datatype.
+
+When compare to old language java enum is more powerful.
+
+We can declare enum as follow.
+
+syntax:
+-------
+	enum  <type_name>
+	{
+		value1,value2,.....,valueN
+	}
+
+
+Internal implementation of enum 
+-------------------------------
+Every enum internally consider as class concept and it is extended with java.lang.Enum class.
+
+Every enum constant is a reference variable of enum type.
+
+
+enum Months 			final class Months extends java.lang.Enum
+{				{	
+	JAN,FEB,MAR	==>		public static final Months JAN=new Months();
+}					public static final Months FEB=new Months();
+					public static final Months MAR=new Months();
+				}
+
+Declaration and Usage of enum 
+=============================
+ex:
+----
+enum Months 
+{
+	JAN,FEB,MAR
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		Months m = Months.JAN;
+		System.out.println(m);
+	}
+}
+
+ex:
+---
+enum Months 
+{
+	JAN,FEB,MAR
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		Months m = Months.FEB;
+		
+		switch(m)
+		{
+			case JAN: System.out.println("January"); break;
+			case FEB: System.out.println("February"); break;
+			case MAR: System.out.println("March"); break;
+		}
+	}
+}
+
+java.lang.Enum
+---------------
+Power to enum will be inherited from java.lang.Enum class.
+
+It contains two methods.
+
+1) values() 
+-----------
+	It is used to read group of constants from enum.
+
+2) ordinal() 
+-----------
+	It is used to return ordinal numbers.
+
+ex:
+---
+enum Drinks
+{
+	COKE, PEPSI, CAMPA	
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		Drinks[] d = Drinks.values();
+		
+		for(Drinks d1 : d )
+		{
+			System.out.println(d1+"--------------"+d1.ordinal());
+		}
+	}
+}
+
+When compare to old language enum , java enum is more powerful because in addition to constants we can declare variables, methods and constructors.
+
+ex:
+----
+enum Cloths 
+{
+	SILK, COTTON, KHADI;
+	
+	Cloths()
+	{
+		System.out.println("constructor");
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		Cloths c = Cloths.SILK;
+	}
+}
+	
+ex:
+---
+enum Week
+{
+	MON,TUE,WED,THU,FRI,SAT,SUN;
+	
+	static int i = 10;
+	
+	public static void main(String[] args)
+	{
+		System.out.println(i);
+	}
+}
+
+ex:
+---
+enum Week
+{
+	MON,TUE,WED,THU,FRI,SAT,SUN;
+	
+	public static void main(String[] args)
+	{
+		int i =10;
+		System.out.println(i);
+	}
+}
+
+Enum vs inheritance 
+===================
+Inheritance concept is not applicable for enum because every enum internally consider as final so we can't create child enum. 
+ex:
+	enum A 
+	{
+	}
+	enum B extends A  --> invalid 
+	{
+	}
+
+Enum can't extend another enum or class because it already extended java.lang.Enum class.
+ex:
+	class A 
+	{
+	}
+	enum B extends A 
+	{
+	}
+
+
+
+
+Cloning in Java
+===============
+The process of creating exact duplicate object is called cloning.
+
+The main objective of cloning is to keep backup.
+
+We can perform cloning only for cloneable objects.
+
+An object said to be clonable if a class implements Cloneable interface.
+
+Cloneable interface present in java.lang package and it does not contain any methods.
+
+Cloneable is a marker interface and we will get ability automatically by the JVM.
+
+To perform cloning in java we need to use clone() method of Object class. 
+
+ex:
+	protected Object clone()throws CloneNotSupportedException
+
+ex:
+---
+class Test implements Cloneable
+{
+	//instance variables 
+	int i=10,j=20;
+	
+	public static void main(String[] args)throws CloneNotSupportedException
+	{
+		Test t1=new Test();
+		System.out.println(t1.i+" "+t1.j); // 10  20
+		System.out.println(t1.hashCode()); // 1933863327
+		
+		Test t2=(Test)t1.clone();
+		System.out.println(t2.i+" "+t2.j); // 10  20
+		System.out.println(t2.hashCode()); // 112810359
+	}
+}
+
+Q) What is the difference between shallow cloning and deep cloning?
+
+Shallow cloning 
+===============
+The process of creating exact duplicate reference but not object is called shallow cloning.
+ex:
+	Test t1=new Test();
+	Test t2=t1;
+
+Diagram: class35.1
+
+ex:
+---
+class Test 
+{
+	//instance variable 
+	int i=10;
+	
+	public static void main(String[] args)
+	{
+		Test t1 = new Test();
+		System.out.println(t1.i); // 10
+		System.out.println(t1.hashCode()); //2060468723
+		
+		//shallow cloning 
+		Test t2=t1;
+		System.out.println(t2.i); // 10
+		System.out.println(t2.hashCode()); //2060468723
+	}
+}
+
+
+Deep cloning
+=============
+The process of creating exact duplicate object is called deep cloning.
+ex:
+	Test t1=new Test();
+	Test t2=(Test)t1.clone();
+
+Diagram: class35.2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

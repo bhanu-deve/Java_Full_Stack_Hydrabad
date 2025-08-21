@@ -1,0 +1,11 @@
+9581279517 - DevRaj Sir 
+
+Q) Write a java program to check given number even or odd using bitwise operator?
+
+Q) Write a java program to find out greatest of three numbers using ternary operatror?
+
+Q) Write a java program to convert time to seconds?
+
+Q) Write a java program to perform swapping of two numbers without using third variable?
+
+Q) Write a java program to find out area of a circle using Math class?

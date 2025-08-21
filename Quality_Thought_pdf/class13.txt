@@ -1,0 +1,320 @@
+Q) Write a java program to perform swapping of two numbers?
+
+input:
+	a=10 , b=20
+
+output:
+	Before swapping a=10 and b=20
+	After swapping a=20 and b=10
+
+
+import java.util.Scanner;
+class  Example6
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the first number :");
+		int a = sc.nextInt();
+		
+		System.out.println("Enter the second number :");
+		int b = sc.nextInt();
+		
+		System.out.println("Before swapping a="+a+" and b="+b);
+		
+		//logic 
+		int temp = a;
+		a = b;
+		b = temp;
+		
+		System.out.println("After swapping a="+a+" and b="+b);
+	}
+}
+
+Q) Write a java program to find out swapping of two numbers without using third variable?
+
+import java.util.Scanner;
+class  Example7
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the first number :");
+		int a = sc.nextInt();
+		
+		System.out.println("Enter the second number :");
+		int b = sc.nextInt();
+		
+		System.out.println("Before swapping a="+a+" and b="+b);
+		
+		//logic 
+		a = a + b;
+		b = a - b;
+		a = a - b;
+		
+		System.out.println("After swapping a="+a+" and b="+b);
+	}
+}
+
+
+Q) Write a java program to accept one salary and find out 10% of TDS?
+ 
+import java.util.Scanner;
+class  Example8
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the salary :");
+		int salary = sc.nextInt();
+		
+		float tds = (float) salary*10/100;
+		
+		System.out.println("10 Percent of TDS is ="+tds);
+	}
+}
+
+Q) Write a java progarm to convert CGPA to percentage?
+
+import java.util.Scanner;
+class  Example9
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the cgpa :");
+		float cgpa = sc.nextFloat();
+		
+		//logic
+		float percentage = cgpa * 9.5f;
+		
+		System.out.println("CGPA to percentage is ="+percentage);
+	}
+}
+
+
+Q) Write a java program to accept six marks of a student then find out total and average?
+
+ex:
+---
+import java.util.Scanner;
+class  Example10
+{
+	public static void main(String[] args) 
+	{
+		int m1=86,m2=44,m3=56,m4=62,m5=88,m6=70;
+		
+		int total = m1 + m2 + m3 + m4 + m5 + m6;
+		
+		float average = (float) total / 6;
+		
+		System.out.println("Total :"+total);
+		System.out.printf("Average :%.2f",average);
+	}
+}
+
+
+Q) 
+There is one running race between different participants. So in that race two partners need to finish the race. There is four rounds of race in that each lane length is 100m.So in that one participant will cover 30% of the lane length and another partner will cover remaining length of lane. So print each participant covers distance in that race.
+
+
+class  Example11
+{
+	public static void main(String[] args) 
+	{
+		int lane = 100;
+		
+		int rounds = 4;
+		
+		int firstParticipantPercent = 30;
+		
+		int firstParticipant = lane * rounds * firstParticipantPercent/100;
+		
+		int secondParticipant = lane * rounds - firstParticipant;
+		
+		System.out.println("First participant covers "+firstParticipant+" meters distance in that race");
+		System.out.println("Second participant covers "+secondParticipant+" meters distance in that race");
+	}
+}
+
+
+Q) Write a java program to convert time to seconds?
+
+
+input:
+	 h = 10
+	 m = 30
+	 s = 23
+output:
+	37823
+
+
+class  Example12
+{
+	public static void main(String[] args) 
+	{
+		int h = 10;
+		int m = 30;
+		int s = 23;
+		
+		int totalSeconds = (h*3600) + (m*60) + s;
+		
+		System.out.println(totalSeconds);
+	}
+}
+
+
+
+Q) Write a java program to convert seconds to time?
+
+input:
+	37823
+
+output:
+	10:30:23
+
+class  Example13
+{
+	public static void main(String[] args) 
+	{
+		int totalSeconds = 37823;
+		
+		int h = totalSeconds/3600;
+		
+		int m = (totalSeconds%3600)/60;
+		
+		int s = totalSeconds%60;
+		
+		System.out.println(h+":"+m+":"+s);
+	}
+}
+
+Typecasting 
+=============
+The process of converting from one datatype to another datatype is called typecasting.
+
+There are two ways to perform typecasting in java.
+
+1) Implicit typecasting
+
+2) Explicit typecasting
+
+
+
+1) Implicit typecasting
+-----------------------
+If we want to store small value into a bigger variable then we need to use implicit typecasting.
+
+A compiler is responsible to perform implicit typecasting.
+
+There is no possibility to loss the information.
+
+It is also known as widening or upcasting.
+
+We can perform implicit typecasting as follow.
+
+ex:
+	byte	-->	short
+				-->
+					int -->	long --> float --> double
+				-->
+			char
+
+ex:
+---
+class  Test
+{
+	public static void main(String[] args) 
+	{
+		byte b=10;
+		
+		int i = b;
+		
+		System.out.println(i); // 10
+	}
+}
+
+ex:
+---
+class  Test
+{
+	public static void main(String[] args) 
+	{
+		char ch='a';
+		
+		int i = ch;
+		
+		System.out.println(i); // 97
+	}
+}
+
+ex:
+--
+class  Test
+{
+	public static void main(String[] args) 
+	{
+		int i=10;
+		
+		double d = i;
+		
+		System.out.println(d); // 10.0
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

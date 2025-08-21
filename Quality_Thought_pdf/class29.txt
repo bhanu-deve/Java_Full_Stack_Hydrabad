@@ -1,0 +1,401 @@
+Multi Dimensional Array 
+=======================
+If array contains more then two dimensions is called multi dimensional array.
+
+We can declare and create multi dimensional array as follow.
+
+ex:
+	int[][][]  arr = new int[2][3][3];
+
+	Total 18 elements we can store.
+
+We can initialize multi dimensional array as follow.
+ex:
+	int[][][] arr = {
+				{
+					{1,2,3},
+					{4,5,6},
+					{7,8,9}
+				},
+				{
+					{1,2,3},
+					{4,5,6},
+					{7,8,9}
+				}	
+			};
+
+ex:
+----
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int[][][] arr = {
+				{
+					{1,2,3},
+					{4,5,6},
+					{7,8,9}
+				},
+				{
+					{1,2,3},
+					{4,5,6},
+					{7,8,9}
+				}	
+			};
+			
+		for(int i=0;i<arr.length;i++)
+		{
+			for(int j=0;j<arr[i].length;j++)
+			{
+				for(int k=0;k<arr[i][j].length;k++)
+				{
+					System.out.print(arr[i][j][k]+" ");	
+				}
+				System.out.println();
+			}
+			//new line 
+			System.out.println();
+		}
+	}
+}
+
+Anonymous Array 
+===============
+Sometimes we will declare an array without name such type of nameless array is called anonymous array. 
+
+The main objective of anonymous array is just for instance use.
+
+We can declare anonymous array as follow.
+ex:
+	new int[]{10,20,30};
+	new int[][]{{1,2,3},{4,5,6}}
+
+
+Q) Write a java program to perform sum of array elements?
+
+input:
+	7 9 1 3 5 
+
+output:
+	25
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		System.out.println(sum(new int[]{7,9,1,3,5}));
+	}
+	public static int sum(int[] arr)
+	{
+		int sum=0;
+		for(int i : arr)
+		{
+			sum += i;
+		}
+		
+		return sum;
+	}
+}
+
+
+
+OOPS 
+=====
+OOPS stands for Object Oriented Programming System/Structure.
+
+OOPS created to deal with real world entities using programming language.
+
+A language is said to be object oriented if it supports following features.
+
+ex:
+	class
+	object 
+	Abstraction
+	Encapsulation 
+	Inheritance
+	Polymorphism
+
+A language which provides very good environment to represent the data inthe form of objects
+is called object oriented progrmaming language.
+
+
+
+class
+======
+A class is a blue print of an object.
+ex:
+	Design 
+	Template 
+
+A class is a collection of objects.
+
+A class is a logical entity.
+
+A class will accept following modifiers.
+ex:
+	default 
+	public 
+	abstract 
+	final 
+
+We can declare a class as follow.
+
+syntax:
+------
+	 optional 
+	    |
+	<modifier> class  class_name  <extends>  Parent-classname
+				      <implements> interface-name
+	{
+		-
+		- 
+		-
+	}	
+
+
+Q) What is the difference between default class and public class?
+
+default class					public class
+-----------					--------------
+To declare a default class we will not use	To declare a public class we will use 
+any keyword.					public keyword.
+ex:						ex:
+	class A 					public class A 
+	{						{
+
+	}						}
+
+If we declare any class as default then we	If we declare any class as public then we  
+can access that class within the package.	can access that class within the package and 
+						outside the package.
+
+
+Q) What is the difference between final and abstract class?
+
+final class					abstract class
+---------------					--------------
+To declare final class we will use final 	To declare abstract class we will use abstract
+keyword.					keyword.
+ex:						ex:
+	final class A 					abstract class A 
+	{						{
+
+	}						}
+
+Child creation is not possible.			Child creation is possible.
+
+Object creation is possible.			Object creation is not possible.
+
+
+
+object 
+======
+It is a outcome of a blue print.
+
+It is a instance of a class. Here instance means allocating memory for our data members.
+
+It is a physical entity.
+
+It is a collection of properties(variables) and behaviours(methods).
+
+ex:
+			Dog
+			|
+	|---------------------------------|
+Properties				Behaviours
+
+> Name					> Eating 
+> Color 				> Barking 
+> Breed 				> Sleeping 
+> Weight 				> Running 
+> Height 				and etc
+and etc. 
+
+It is possible to create more then one object in a single class.
+
+We can create object as follow.
+
+syntax:
+-------
+	<class_name> ref_variable = new constructor();
+ex:
+	Test t = new Test();
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Test t1 = new Test();
+		Test t2 = new Test();
+		Test t3 = new Test();
+		
+		System.out.println(t1.hashCode());
+		System.out.println(t2.hashCode());
+		System.out.println(t3.hashCode());
+		
+		System.out.println(t1); // Test@Hexa
+		System.out.println(t2.toString()); // Test@Hexa
+		System.out.println(t3.toString()); // Test@Hexa
+	}
+}
+
+
+
+Q) What is hash code in java?
+
+In java, for every object JVM will create a unique identification number i.e hash code.
+
+Diagram: class29.1
+
+In order to read the hash code of an object we will use hashCode() method of Object class.
+
+
+
+Q) What is toString() method?
+
+A toString() method present in Object class.
+
+Whenever we are trying to display any object reference directly or indirectly toString() method will be executed.
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int[] arr=new int[3];
+		System.out.println(arr.toString()); // [I@Hexa
+	}
+}
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Test t=new Test();
+		System.out.println(t); // Test@Hex
+		System.out.println(t.toString()); // Test@Hex
+	}
+	@Override 
+	public String toString()
+	{
+		return "Test Object";
+	}
+}
+
+ex:
+---
+class Test  
+{
+	int i=10,j=20;
+	
+	public static void main(String[] args) 
+	{
+		Test t = new Test();	
+		System.out.println(t);// Test@Hexvalue 
+	}
+	@Override
+	public String toString()
+	{
+		return i+" and "+j;
+	}
+}
+
+
+Q) What is the difference between class and object?
+
+class						object
+--------					----------
+To declare a class we will use class keyword.	To declare object we will use new keyword.
+
+It is a blue print of an object.		It is a outcome of a blue print.
+
+It is a collection of objects.			It is a collection of properties & behaviours.	
+
+It is a logical entity.				It is a physical entity.
+
+It can't be modified.				It can be modified.
+
+It can't be redeclared.				It can be redeclared.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

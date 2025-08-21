@@ -1,0 +1,558 @@
+Maven 
+=====
+Maven is a project building management tool.
+
+It is used to simplify the development process.
+
+Every maven project contains pom.xml file which contains dependencies, goals, packages and etc.
+
+Here POM stands for Project Object Model.
+
+Steps to develop maven project 
+===============================
+step1:
+------
+	Launch eclipse IDE
+
+step2:
+-----
+	Create a maven project i.e MavenProj.
+	ex:
+		File --> New --> Maven project --> Next --->
+		Filter : org.apache.maven.archetypes
+		Group Id : org.apache.maven.archetypes		 
+		Artifact Id : maven-architype-webapp
+		version     : 1.0
+		--> Next --->
+		Group id : com.ihub.www
+		Artifact Id : MavenProj
+		package : com.ihub.www ---> Finish. 
+
+step3:
+------
+	Add "servlet-api" maven dependency inside pom.xml file.
+	ex:
+		<dependency>
+    			<groupId>javax.servlet</groupId>
+    			<artifactId>servlet-api</artifactId>
+    			<version>2.5</version>
+    			<scope>provided</scope>
+		</dependency>
+
+step4:
+------
+	Goto index.jsp file and write below code.
+	
+index.jsp
+---------
+<center>
+	<h1>
+		<a href="test"> clickMe </a>
+	</h1>
+</center>
+
+step5:
+-----
+	Goto web.xml file inside "webapp/WEB-INF" folder and write below code.
+
+web.xml 
+-------
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  	<servlet>
+  		<servlet-name>TestSrv</servlet-name>
+  		<servlet-class>com.ihub.www.TestSrv</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+  		<servlet-name>TestSrv</servlet-name>
+  		<url-pattern>/test</url-pattern>
+  	</servlet-mapping>
+  	
+  	<welcome-file-list>
+  		<welcome-file>index.jsp</welcome-file>
+  	</welcome-file-list>
+</web-app>
+
+step6:
+-----
+	Goto "src/main" folder and create "java" folder.
+
+step7:
+------
+	Create com.ihub.www package inside "src/main/java" folder.
+
+
+step8:
+------
+	Create TestSrv.java file inside "com.ihub.www" package.
+
+TestSrv.java
+------------
+package com.ihub.www;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class TestSrv extends HttpServlet 
+{
+	protected void doGet(HttpServletRequest req,HttpServletResponse res)throws ServletException,IOException
+	{
+		PrintWriter pw =res.getWriter();
+		res.setContentType("text/html");
+		
+		pw.println("<center><h1>Welcome to Servlets</h1></center>");
+		
+		pw.close();
+	}
+}
+
+step9:
+-----
+	Run maven project.
+
+step10:
+------
+	Test the application by using below request url.
+	ex:
+		http://localhost:2525/MavenProj
+
+
+
+GIT/GITHUB 
+===========
+
+Q) What is the difference between GIT and GITHUB ?
+
+GIT						GITHUB 
+-----------					--------
+It is a distributed version control system 	It is a hosting server for GIT.
+which is used to track the changes in each 
+file of a project.
+
+It is a software.				It is a service.
+
+It is locally installed in a computer.		It is hosted on web.
+
+It contains local repository.			It contains remote repository.
+
+It is command based.				It is GUI.
+
+
+GIT Stages
+============
+GIT contains three stages.
+
+1) Working Directory 
+
+2) Staging Area 
+
+3) Repository 
+
+Diagram: jsp6.1
+
+
+Steps to push the code in GITHUB
+=================================
+step1:
+------
+	Create a account in GITHUB.
+	ex:
+		https://github.com
+
+step2:
+-----
+	Sigin to github account.
+	ex:
+		username:NiyazulHasan
+		password:******
+
+step3:
+-----
+	Create a remote repository.
+	ex:
+		https://github.com/NiyazulHasan/IH-JAVA-049
+
+step4:
+------
+	Download and install GIT software.
+	ex:
+		https://git-scm.com/downloads
+
+step5:
+------
+	Create a "myFolder" on desktop.
+
+step6:
+------
+	Copy and paste some files inside "myFolder".
+
+step7:
+------
+	Open the git bash from "myFolder".
+
+step8:
+------
+	Initialized the git empty repository.
+	ex:
+		git init 
+
+step9:
+-------
+	Check git status.
+	ex:
+		git status 
+
+step10:
+------
+	Change the branch.
+	ex:
+		git branch --move master main 
+
+step11:
+------
+	Add the files to staging area.
+	ex:
+		git add . 
+step12:
+-------
+	Commit the changes to repository.
+	ex:
+		git commit -m "resumes"
+
+	Note:
+	----
+	Who are you ? 
+
+	git config --global user.name "My Name"
+	git config --global user.email "myemail@example.com"
+	
+step13:
+------
+	Add GIT remote origin.
+	ex:
+		git remote add origin https://github.com/NiyazulHasan/IH-JAVA-049
+
+step14:
+------
+	Push the code to remote repository.
+	ex:
+		git push -f origin main 
+
+step15:
+------
+	Refresh the remote repository.
+	ex:
+		https://github.com/NiyazulHasan/IH-JAVA-049
+
+
+How to pull the request 
+========================
+step1:
+------
+	Create a newFolder on desktop.
+step2:
+------
+	Open the git bash from "newFolder".
+
+step3:
+------
+	Initialized git empty repository.
+	ex:
+		git init 
+
+step4:
+------
+	Make a pull request.
+	ex:
+		git pull https://github.com/NiyazulHasan/IH-JAVA-049
+
+Junit 
+=========
+Junit is a unit testing framework for java programming language.
+
+Checking small piece of code working as per requirement or not is called unit testing.
+
+Unit testing is important for TDD (Test Driven Development).
+
+To perform unit testing we need to create test cases or test suit.
+
+
+
+Simple Maven Archetype project structure
+-------------------------------------
+DemoProject
+|
+|----src/main/java
+	|
+	|---com.ihub.www
+		|
+		|---Demo.java
+|
+|----src/main/resources
+|
+|----src/test/java
+	|
+	|---com.ihub.www
+		|
+		|---DemoTest.java
+|
+|----src/test/resources
+
+
+
+Steps to perform unit testing
+=============================
+step1:
+------
+	Create a simple maven archetype project.
+
+step2:
+-------
+	create a com.ihub.www package inside "src/main/java".
+
+step3:
+------
+	Create a App.java file inside "com.ihub.www" package.
+
+Demo.java
+---------
+package com.ihub.www;
+
+public class Demo 
+{
+	public int sum(int a,int b)
+	{
+		return a+b;
+	}
+	
+	public String concatinate(String str1,String str2)
+	{
+		return str1+str2;
+	}
+}
+
+
+step4:
+-----
+	Create a Test file i.e DemoTest.java.
+	ex:
+		right click to App.java file --> new --> others -->
+		Junit --> test case --> Next --> select the methods for 
+		test cases --> finish.
+
+
+step5:
+-----
+	Add unit testing logic inside DemoTest.java file.
+
+AppTest.java
+------------
+package com.ihub.www;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+public class DemoTest {
+
+	Demo d=null;
+	
+	@Before
+	public void setUp() throws Exception {
+		d=new Demo();
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		
+		
+	}
+
+	@Test
+	public void testSum() {
+		int result=d.sum(10,20);
+		assertEquals(50, result);
+	}
+
+	@Test
+	public void testConcatinate() {
+		String result=d.concatinate("ihub", "talent");
+		assertEquals("ihubtalent",result);
+	}
+
+}
+
+
+step6:
+-----
+	Run the junit test cases.
+	ex:
+		Right click to AppTest.java file --> run as --> Junit test case.
+
+Note:
+-----
+	Green color indicates unit test case is passed.
+	Brown color indicates unit test case is failed.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

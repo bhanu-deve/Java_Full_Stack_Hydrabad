@@ -1,0 +1,315 @@
+Types of variables 
+==================
+A name which is given to a memory location is called variable.
+
+Purpose of variable is used to store the data.
+
+In java, variables are divided into two types.
+
+1) Primitive variables 
+---------------------
+	It is used to represent primitive values.
+
+2) Reference variables 
+----------------------
+	It is used to represent object reference.
+	ex:
+		Student s = new Student();
+			|
+		reference variable 
+
+Based on the position and execution these variables are divided in three types.
+
+1) Instance variables / Non-static variables 
+
+2) Static variables / Global variables 
+
+3) Local variables / Temperory variables 
+
+
+1) Instance variables
+----------------------
+A value of a variable which is varied(changes) from object to object is called instance variable.
+
+Instance variable will be created at the time of object creation and it will destroy at the time of object destruction. Hence scope of instance variable is same as scope of an object.
+
+Instance variable will store in heap area as a part of an object.
+
+Instance variable must and should declare immediately after the class but not inside methods, blocks and constructors.
+
+Instance variable we can access directly from instance area but we can't access directly from static area.
+
+To access instance variable from static area we need to create object reference.
+
+ex:1
+---
+class  Test
+{
+	//instance variable 
+	int i=10;
+
+	public static void main(String[] args)
+	{
+		System.out.println(i);// C.T.E 
+	}
+}
+
+ex:2
+-----
+class  Test
+{
+	//instance variable 
+	int i=10;
+
+	public static void main(String[] args)
+	{
+		Test t=new Test();
+		System.out.println(t.i);
+	}
+}
+
+Note:
+-----
+If we won't initialize any value to instance variable then JVM will initialized default values.
+
+ex:3
+-----
+class  Test
+{
+	//instance variable 
+	boolean b;
+
+	public static void main(String[] args)
+	{
+		Test t=new Test();
+		System.out.println(t.b); // false 		
+	}
+}
+
+For every object a seperate copy of instance variable will be created.
+
+ex:4
+----
+class  Test
+{
+	//instance variable 
+	int i=10;
+
+	public static void main(String[] args)
+	{
+		Test t1=new Test();
+		Test t2=new Test();	
+
+		System.out.println(t1.i); //10
+		System.out.println(t2.i); //10
+
+		t1.i=100;	
+
+		System.out.println(t1.i); // 100
+		System.out.println(t2.i); // 10
+	}
+}
+
+ex:5
+----
+class  Test
+{
+	public static void main(String[] args)
+	{
+		//calling 
+		Test t=new Test();
+		t.methodOne();
+	}
+	//non-static method 
+	public void methodOne()
+	{
+		System.out.println("instance-method");	
+	}
+}
+
+
+If we declare our logics in a seperate methods then we can achieve reusability.
+
+ex:6
+-----
+class  Test
+{
+	public static void main(String[] args)
+	{
+		Test t=new Test();
+		t.methodOne();
+		t.methodOne();
+	}
+
+	//non-static method 
+	public void methodOne()
+	{
+		System.out.println("instance-method");		
+	}
+}
+
+
+Interview Question
+==================
+
+Q) John and Jack both are best friends in a town.While going to school they found a begger.John and Jack both decided to help that poor guy. John gave 100 rupees from his school fee and Jack gave 50 rupees from his pocket money. Write  a java program to find out total contribution they have done help a needy person?
+
+Input:
+	100 
+	50
+
+Output:
+	150 
+
+class  Test
+{
+	//intance variable 
+	int a = 100;
+	int b = 50;
+
+	public static void main(String[] args)
+	{
+		Test t=new Test();
+		t.sum();
+	}
+
+	//non-static method 
+	public void sum()
+	{
+		int c = a + b;
+		System.out.println(c); 	
+	}
+} 
+
+Assignment - Coding Practice
+============================
+1) Write class ? 
+
+	class  Test
+	{
+	
+	}
+
+
+2) Write main method?
+
+	public static void main(String[] args)
+	{
+	
+	}
+
+
+3) Write non-static method?
+
+	public void methodOne()
+	{
+		
+	}
+
+
+4) Write static method?
+
+	public static void methodOne()
+	{
+		
+	}
+
+
+5) Create object in java?
+
+	Test t = new Test();
+
+
+
+Assignment 
+============
+Q) Write a java program to find out area of a rectangle?
+
+Q) Write a java program to find out square of a given number?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

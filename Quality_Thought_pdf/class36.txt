@@ -1,0 +1,532 @@
+Inner classes
+==============
+Sometimes we will declare a class inside another class such concept is called inner class.
+
+Inner classes introduced in 1.1 version as a part of event handling to remove GUI bugs. 
+
+Due to powerful features and benefits of inner classes slowly programmers started to use inner classes in regular programming.
+
+There are four ways to declare inner classes in java.
+
+1) Regular or Normal inner class
+
+2) Static inner class 
+
+3) Anonymous inner class 
+
+4) Method local inner class 
+
+
+1) Regular or Normal inner class
+----------------------------------
+We will declare a named class inside another class without using static keyword is called regular or normal inner class.
+
+In inner classes we can't declare static members.
+
+
+ex:
+---
+class Outer
+{
+	class Inner 
+	{
+		public void m1()
+		{
+			System.out.println("Inner M1-Method");
+		}
+	}
+	
+	public static void main(String[] args)
+	{
+		Outer.Inner i = new Outer().new Inner();
+		i.m1();
+	}
+}
+Note:
+-----
+	Once if we compile above program we will get two .class files i.e 
+	Outer.class and Outer$Inner.class.
+
+ex:
+---
+class Outer
+{
+	class Inner 
+	{
+		public void m1()
+		{
+			System.out.println("Inner M1-Method");
+		}
+	}
+	
+	public static void main(String[] args)
+	{
+		Outer.Inner i1 = new Outer().new Inner();
+		i1.m1();
+		
+		//or
+		
+		Outer o = new Outer();
+		Outer.Inner i2 = o.new Inner();
+		i2.m1();
+	}
+}
+
+ex:
+---
+class Outer
+{
+	class Inner 
+	{
+		public void m1()
+		{
+			System.out.println("Inner M1-Method");
+		}
+	}
+	
+	public static void main(String[] args)
+	{
+		Outer.Inner i1 = new Outer().new Inner();
+		i1.m1();
+		
+		//or
+		
+		Outer o = new Outer();
+		Outer.Inner i2 = o.new Inner();
+		i2.m1();
+		
+		//or
+		new Outer().new Inner().m1();
+	}
+}
+
+ex:
+---
+class Outer
+{
+	class Inner 
+	{
+		public void m1()
+		{
+			System.out.println("Inner M1-Method");
+		}
+	}
+	
+	public void m2()
+	{
+		Inner i = new Inner();
+		i.m1();
+	}
+	
+	public static void main(String[] args)
+	{
+		Outer o = new Outer();
+		o.m2();
+	}
+}
+
+2) Static inner class 
+----------------------
+If we declare named class inside another class with static keyword is called static inner class.
+
+In regular or normal inner class without existing outer object we can't access inner class object.
+
+To overcome this limitation we need to use static inner class.
+
+ex:
+----
+class Outer
+{
+	static class Inner 
+	{
+		public void m1()
+		{
+			System.out.println("Inner M1-Method");
+		}
+	}
+
+	public static void main(String[] args)
+	{
+		Outer.Inner i = new Outer.Inner();
+		i.m1();
+	}
+}
+
+ex:
+-----
+class Outer
+{
+	static class Inner 
+	{
+		public void m1()
+		{
+			System.out.println("Inner M1-Method");
+		}
+	}
+	
+	public void m2()
+	{
+		System.out.println("Outer M2-Method");
+	}
+
+	public static void main(String[] args)
+	{
+		Outer o = new Outer();
+		o.m2();
+		
+		Inner i =new Inner();
+		i.m1();
+	}
+}
+
+3) Anonymous inner class
+-------------------------
+Sometimes we will declare a class without name such type of nameless class is called anonymous inner class.
+
+The main objective of anonymous inner class is "just for instance use".
+
+ex:
+----
+class Course 
+{
+	public void topic()
+	{
+		System.out.println("Exception Handling");
+	}
+}
+class Test
+{	
+	public static void main(String[] args)
+	{	
+		Course c = new Course()
+		{
+			public void topic()
+			{
+				System.out.println("OOPS");
+			}
+		};
+		c.topic();
+		
+		Course c1 = new Course();
+		c1.topic();
+	}
+}
+
+4) Method local inner class
+---------------------------
+Sometimes we will declare a class inside a method such concept is called method local inner class.
+
+The main objective of method local inner class is when method specific repeatedly required functionality.
+
+ex:
+---
+class Outer
+{
+	public void m1()
+	{
+			class Inner 
+			{
+				public void sum(int a,int b)
+				{
+					System.out.println(a+b);
+				}
+			}
+			
+			Inner i = new Inner();
+			i.sum(10,20);
+			i.sum(100,200);
+			i.sum(1000,2000);
+	}
+	
+	public static void main(String[] args)
+	{
+		Outer o = new Outer();
+		o.m1();
+	}
+}
+
+
+Q) Types of Objects in Java?
+
+We have two types of objects in Java.
+
+1) Immutable object 
+
+2) Mutable object 
+
+1) Immutable object 
+-------------------
+After object creation if we perform any changes then for every change a new object will be created such type of object is called immutable object.
+ex:
+	String and Wrapper classes 
+
+
+
+2) Mutable object 
+-----------------
+After object creation if we perform any changes then all the required changes will be done in a same object only such type of object is called mutable object.
+ex:
+	StringBuffer and StringBuilder 
+
+
+String 
+=======
+It is a collection of characters which is enclosed in a double quotation.
+
+case1:
+------
+Once if we create a String object we can't perform any changes. If we perform any changes then for every change a new object will be created. Such behaviour is called immutability of an object.
+
+Diagram: class36.1
+
+
+case2:
+------
+What is the difference between == and .equals() method?
+
+==
+---
+It is used for reference comparision or address comparision.
+It compares primitive types and object types.
+ex:
+---
+class Test
+{
+	public static void main(String[] args)
+	{
+		String s1=new String("ihub");
+		String s2=new String("talent");
+		System.out.println(s1==s2); // false 
+	}
+}
+
+.equals()
+---------
+It is used for content comparision which is case sensitive.
+
+It is used compare only object types.
+
+ex:
+---
+class Test
+{
+	public static void main(String[] args)
+	{
+		String s1=new String("ihub");
+		String s2=new String("ihub");
+		System.out.println(s1.equals(s2)); // true 
+	}
+}
+
+case3:
+------
+Once if we create a String object two objects will be created. One is on heap and another is on SCP(String Constant Pool) area. But 's' always points to heap area.
+
+Diagram: class36.2
+
+Object creation in SCP area is always optional. First JVM will check is there any object is created with same content or not. If it is created then JVM simply refers to that object. If it is not created then JVM will create a new object. Hence there is no chance of having duplicate objects in SCP area.
+
+Even though SCP objects do not have any object reference , garbage collector can't access them.
+
+SCP objects will destroy automatically whenever JVM shutdowns or terminated.
+
+ex:
+---
+class Test
+{
+	public static void main(String[] args)
+	{
+		String s1=new String("ihub");
+		String s2=new String("ihub");
+		String s3="ihub";
+		String s4="ihub";
+		String s5="talent";
+		System.out.println(s3==s4); // true 
+	}
+}
+
+Diagram: class36.3
+
+
+Interning of String object
+===========================
+With the help of heap object reference if we need corresponding SCP object reference then we need to use intern() method.
+
+Diagram: class36.4
+
+
+String important methods 
+=========================
+
+Q) Write a java program to display size of a string?
+
+input:
+	hello 
+
+output:
+	5
+
+class Test
+{
+	public static void main(String[] args)
+	{
+		String str="hello";
+		System.out.println(str.length());
+	}
+}
+
+Q) Write a java program to convert lowercase string to uppercase?
+
+input:
+	hello 
+
+output:
+	HELLO 
+
+ex:
+---
+class Test
+{
+	public static void main(String[] args)
+	{
+		String str="hello";
+		str = str.toUpperCase();
+		System.out.println(str);
+	}
+}
+
+
+Q) Write a java program to convert uppercase string to lowercase?
+
+input:
+	HELLO
+
+output:
+	hello
+
+
+class Test
+{
+	public static void main(String[] args)
+	{
+		String str="HELLO";
+		str = str.toLowerCase();
+		System.out.println(str);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

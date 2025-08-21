@@ -1,0 +1,760 @@
+Q) Write a java program to display interset elements ?
+
+input:
+	html  css  java  bootstrap spring 
+
+	css   nodejs  html  bootstrap expressjs
+
+ex:
+	html  css bootstrap 
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		ArrayList list1 = new ArrayList();
+		list1.add("html");
+		list1.add("css");
+		list1.add("java");
+		list1.add("bootstrap");
+		list1.add("spring");
+		System.out.println(list1);
+		
+		ArrayList list2 = new ArrayList();
+		list2.add("css");
+		list2.add("nodejs");
+		list2.add("html");
+		list2.add("bootstrap");
+		list2.add("expressjs");
+		System.out.println(list2);
+		
+		list1.retainAll(list2);
+		
+		System.out.println(list1);
+	}
+}
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		List list = new ArrayList();
+		list.add(10);
+		list.add(20);
+		list.add(30);
+		System.out.println(list);
+	}
+}
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		List list = Arrays.asList(6,8,1,3,5);
+		System.out.println(list);
+	}
+}
+
+Note:
+-----
+	Here List is immutable. 
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		List list = List.of(7,1,3,8);
+		list.add(10);
+		System.out.println(list);
+	}
+}
+Note:
+-----
+	List is immutable 
+ 
+
+
+LinkedList 
+==========
+The underlying data structure is doubly linkedlist. 
+
+Duplicate objects are allowed.
+
+Insertion order is preserved.
+
+Hetrogeneous objects are allowed.
+
+Null insertion is possible.
+
+It implements Serializable, Cloneable and Deque interface.
+
+LinkedList contains following methods.
+
+ex:
+	public E getFirst();
+  	public E getLast();
+  	public E removeFirst();
+  	public E removeLast();
+  	public void addFirst(E);
+  	public void addLast(E);
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		LinkedList ll = new LinkedList();
+		ll.add("one");
+		ll.add("two");
+		ll.add("three");
+		System.out.println(ll); // [one,two,three]
+		
+		ll.add("one");
+		System.out.println(ll); // [one,two,three,one]
+		
+		ll.add(10);
+		System.out.println(ll); // [one,two,three,one,10]
+		
+		ll.add(null);
+		System.out.println(ll); // [one,two,three,one,10,null]
+	}
+}
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		LinkedList<String> ll = new LinkedList<String>();
+		ll.add("one");
+		ll.add("two");
+		ll.add("three");
+		System.out.println(ll); // [one,two,three]
+		
+		ll.add("one");
+		System.out.println(ll); // [one,two,three,one]
+		
+		ll.add(null);
+		System.out.println(ll); // [one,two,three,one,null]
+	}
+}
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		LinkedList<String> ll = new LinkedList<String>();
+		ll.add("one");
+		ll.add("two");
+		ll.add("three");
+		System.out.println(ll); // [one,two,three]
+		
+		ll.addFirst("gogo");
+		ll.addLast("jojo");
+		System.out.println(ll); // [gogo,one,two,three,jojo]
+		
+		System.out.println(ll.getFirst()); // gogo
+		System.out.println(ll.getLast()); // jojo
+		
+		ll.removeFirst();
+		ll.removeLast();
+		System.out.println(ll); // [one,two,three]
+	}
+}
+
+ 
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		LinkedList<String> ll1 = new LinkedList<String>();
+		ll1.add("one");
+		ll1.add("two");
+		ll1.add("three");
+		System.out.println(ll1); // [one,two,three]
+		
+		
+		LinkedList<String> ll2 = new LinkedList<String>();
+		ll2.add("raja");
+		System.out.println(ll2); // [raja]
+		
+		ll2.addAll(ll1);
+		System.out.println(ll2); //[raja,one,two,three]
+		
+		System.out.println(ll2.containsAll(ll1)); // true 
+		
+		ll2.removeAll(ll1);
+		System.out.println(ll2); // [raja]
+		
+	}
+}
+
+ 
+Q) What is the difference between ArrayList and LinkedList ? 
+
+ArrayList					LinkedList 
+-----------					-------------
+The underlying data structure is resizable 	The underlying data structure is doubly 
+array or growable array.			linkedlist.
+
+It is best for storing and retrieving the 	It is best for manipulating the data.
+data.
+
+Memory location for ArrayList elements		Memory location for LinkedList elements
+are contigeous. 				are not contigeous.
+
+Whenever ArrayList is initialized a default	There is no case of default capability.	
+capacity 10 is assigned to it.
+
+
+Vector 
+======
+The underlying data structure is resizable array or growable array.
+
+Duplicate objects are allowed.
+
+Insertion order is preserved.
+
+Hetrogeneous objects are allowed.
+
+Null insertion is possible.
+
+It implements Serializable , Cloneable and RandomAccess interface.
+
+Vector class contains following methods.
+
+ex:
+	cmd> javap   java.util.Vector
+
+
+	public synchronized E firstElement();
+  	public synchronized E lastElement();
+  	public synchronized void setElementAt(E, int);
+  	public synchronized void removeElementAt(int);
+  	public synchronized void insertElementAt(E, int);
+  	public synchronized void addElement(E);
+	and etc
+
+ex:
+----
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Vector<Integer> v = new Vector<Integer>();
+		System.out.println(v.capacity()); //10
+		
+		for(int i=1;i<=10;i++)
+		{
+			v.addElement(i);
+		}
+		System.out.println(v); // [1,2,3,4,5,6,7,8,9,10]
+		
+		System.out.println(v.firstElement()); // 1
+		System.out.println(v.lastElement()); // 10 
+		
+		v.insertElementAt(100,3);
+		System.out.println(v); // [1,2,3,100,4,5,6,7,8,9,10]
+		
+		v.setElementAt(200,3);
+		System.out.println(v); // [1,2,3,200,4,5,6,7,8,9,10]
+		
+		v.removeElementAt(3);
+		System.out.println(v); // [1,2,3,4,5,6,7,8,9,10]
+		
+		v.removeAllElements();
+		System.out.println(v); // []
+	}
+}
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Vector<Integer> v = new Vector<Integer>();
+		System.out.println(v.capacity()); //10
+		
+		for(int i=1;i<=10;i++)
+		{
+			v.add(i);
+		}
+		System.out.println(v); // [1,2,3,4,5,6,7,8,9,10]
+		
+		System.out.println(v.get(0)); // 1
+		System.out.println(v.get(v.size()-1)); // 10 
+		
+		v.add(3,100);
+		System.out.println(v); // [1,2,3,100,4,5,6,7,8,9,10]
+		
+		v.set(3,200);
+		System.out.println(v); // [1,2,3,200,4,5,6,7,8,9,10]
+		
+		v.remove(3);
+		System.out.println(v); // [1,2,3,4,5,6,7,8,9,10]
+		
+		v.clear();
+		System.out.println(v); // []
+	}
+}
+
+ 
+Q) What is the difference between ArrayList and Vector?
+
+ArrayList						Vector 
+---------						-------
+It is a non-legacy class.				It is a legacy class.
+
+It is introduced in 1.2v.				It is introduced in 1.0v.
+
+Methods are not synchronized.				Methods are synchronized.
+
+At a time multiple threads are allowed to 		At a time only one thread is allowed to 
+operate on ArrayList object. Hence ArrayList 		operate on Vector object. Hence Vector 
+is not thread safe.					is thread safe.
+
+Effectively performance is high because 		Effectively performance is low because 
+there is no waiting threads.				there is waiting threads.
+
+Stack 
+=====
+It is a child class of Vector class.
+
+If we depend upon Last In First Out (LIFO) order then we need use Stack.
+
+Constructor
+-----------
+	Stack s = new Stack();
+
+Methods 
+------
+1) push(E) 
+---------
+	It is used to push the element to stack.
+
+2) pop() 
+---------
+	It is used to pop the toppest element from stack.
+
+3) peek()
+--------
+	It returns toppest element from stack without removing.
+
+4) isEmpty() 
+---------
+	It is used to check stack is empty or not.
+
+5) search() 
+---------
+	It returns offset value if element is found otherwise it will return -1.
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Stack<String> s=new Stack<String>();
+		s.push("A");
+		s.push("B");
+		s.push("C");
+		System.out.println(s); // [A,B,C]
+		
+		s.pop();
+		System.out.println(s); // [A,B]
+		
+		System.out.println(s.peek());// B 
+		
+		System.out.println(s.isEmpty()); // false 
+		
+		System.out.println(s.search("Z")); // -1
+		
+		System.out.println(s.search("B")); // 1
+		
+		System.out.println(s.search("A")); // 2
+	}
+}
+
+Interview Questions 
+===================
+
+Q) Write a java program to sort the string/list?
+
+input:
+	cat   apple  ball  dog 
+
+output:
+	apple  ball cat  dog 
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="cat apple ball dog";
+		
+		String[] sarr = str.split(" ");
+		
+		List<String> list = Arrays.asList(sarr);
+		
+		Collections.sort(list);
+		
+		//for each loop
+		for(String s : list)
+		{
+			System.out.print(s+" ");
+		}
+		
+	}
+}
+
+Q) Write a java program to display the list in reverse order?
+
+input:
+	this  is  java  class
+
+output:
+		 
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		List<String> list = Arrays.asList("this","is","java","class");
+		
+		Collections.reverse(list);
+
+		for(String s : list)
+		{
+			System.out.print(s+" ");
+		}
+	}
+}
+
+ 
+Q) Write java program to make our list as synchronized?
+
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		List<String> list = List.of("this","is","java","class");
+		
+		List<String> newList =Collections.synchronizedList(list);
+		
+		System.out.println(newList);
+	}
+}
+
+Q) Write a java program to check given string is balanced or not?
+
+input:
+	{[()]} 
+
+output:
+	It is a balance string 
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="{[()]}";
+		if(isBalanced(str.toCharArray()))
+			System.out.println("It is a balanced string");
+		else
+			System.out.println("It is not a balanced string");
+	}
+	public static boolean isBalanced(char[] arr)
+	{
+		Stack<Character> stack = new Stack<Character>();
+		
+		for(int i=0;i<arr.length;i++)
+		{
+			char ch = arr[i];
+				
+			if(ch=='{' || ch=='[' || ch=='(')
+			{
+				stack.push(ch);
+			}
+			else if(ch==')' && !stack.empty() && stack.peek()=='(')
+			{
+				stack.pop();
+			}
+			else if(ch==']' && !stack.empty() && stack.peek()=='[')
+			{
+				stack.pop();
+			}
+			else if(ch=='}' && !stack.empty() && stack.peek()=='{')
+			{
+				stack.pop();
+			}
+			else
+			{
+				return false;
+			}
+		}
+		
+		return stack.isEmpty();
+	}
+}
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

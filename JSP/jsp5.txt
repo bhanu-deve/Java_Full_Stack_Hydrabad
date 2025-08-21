@@ -1,0 +1,486 @@
+Implicit objects 
+================
+Object which can be used directly without any configuration is called implicit object.
+
+Implicit objects are created by the web container which are available for every JSP page.
+
+JSP gives 9 implicit objects.
+
+ex:
+	Object			Type 
+	--------		---------
+	out			JspWriter 	
+	request 		HttpServletRequest 					
+	response		HttpServletResponse 
+	config 			ServletConfig 
+	application 		ServletContext 
+	session 		HttpSession 		
+	pageContext 		PageContext 
+	exception		Throwable 
+	page			Object 
+
+
+response object 
+================
+A response is a implicit object of type HttpServletResponse.
+
+It is created by the web container.
+
+It is used to send the response or errors to other responses.
+
+Deployment Directory Structure 
+------------------------------
+JspApp12
+|
+|---Java Resources
+|
+|---WebContent 
+	|
+	|---index.html 
+	|---process.jsp 
+	|
+	|---WEB-INF
+		|
+		|---web.xml 
+Note:
+----
+In above application we need to add "servlet-api.jar" file in project build path.
+
+index.html 
+--------
+<center>
+	<h1>
+		<a href="process.jsp"> Facebook </a>
+	</h1>
+</center>
+
+process.jsp 
+---------
+
+<%
+	response.sendRedirect("http://www.facebook.com/login");
+%>
+
+web.xml 
+---------
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  
+  <welcome-file-list>
+  	<welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  
+</web-app>
+
+Request url
+-----------
+	http://localhost:2525/JspApp12/
+
+
+
+config object
+===========
+A config is an implicit object of type ServletConfig.
+
+It is created by the web container.
+
+It is used to read initialized parameters of perticular JSP.
+
+Deployment Directory Structure 
+------------------------------
+JspApp13
+|
+|---Java Resources
+|
+|---WebContent 
+	|
+	|---index.html 
+	|---process.jsp	
+	|
+	|---WEB-INF
+		|
+		|----web.xml 
+Note:
+----
+In above application we need to add "servlet-api.jar" file in project build path.	
+
+index.html 
+----------
+<center>
+	<h1>
+		<a href="test"> click ME </a>
+	</h1>
+</center>
+
+process.jsp 
+-----------
+<%
+		String value = config.getInitParameter("driver");
+		out.println(value);
+%>
+
+web.xml
+------
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  
+  <servlet>
+  	<servlet-name>ABC</servlet-name>
+  	<jsp-file>/process.jsp</jsp-file>
+  	<init-param>
+  		<param-name>driver</param-name>
+  		<param-value>oracle.jdbc.driver.OracleDriver</param-value>
+  	</init-param>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ABC</servlet-name>
+  	<url-pattern>/test</url-pattern>
+  </servlet-mapping>
+  
+  <welcome-file-list>
+  	<welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  
+</web-app>
+
+Request url 
+-----------
+	http://localhost:2525/JspApp13/
+
+
+application object
+==================
+An application is an implicit object of type ServletContext.
+
+It is created by the web container.
+
+It is used to read configuration information from web.xml file which is global.
+
+Deployment Directory Structure 
+-------------------------------
+JspApp14
+|
+|---Java Resources
+|
+|---WebContent 
+	|
+	|---index.html 
+	|---process.jsp 
+	|	
+	|---WEB-INF
+		|
+		|---web.xml 
+Note:
+-----
+In above application we need to add "servlet-api.jar" file in project build path.
+
+index.html
+----------
+<center>
+	<h1>
+		<a href="test"> click Me </a>
+	</h1>
+</center>
+
+
+process.jsp 
+-----------
+<%
+	String value = application.getInitParameter("driver");
+%>
+<center>
+	<h1>
+			<%= value %>
+	</h1>
+</center> 
+
+web.xml 
+------
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  
+  <servlet>
+  	<servlet-name>ABC</servlet-name>
+  	<jsp-file>/process.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>ABC</servlet-name>
+  	<url-pattern>/test</url-pattern>
+  </servlet-mapping>
+  
+  <context-param>
+  	<param-name>driver</param-name>
+  	<param-value>oracle.jdbc.driver.OracleDriver</param-value>
+  </context-param>
+  
+  <welcome-file-list>
+  	<welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  
+  
+</web-app>
+
+Request url 
+---------
+	http://localhost:2525/JspApp14/test
+
+
+session object
+===============
+A session is an implicit object of type HttpSession.
+
+It is created by the web container.
+
+It is used to read, add and remove attribute to/from session.
+
+Deployment Directory Structure 
+------------------------------
+JspApp15
+|
+|---Java Resources
+|
+|---WebContent 
+	|
+	|---form.html 
+	|---first.jsp 
+	|---second.jsp 
+	|
+	|---WEB-INF
+		|
+		|---web.xml 
+Note:
+-----
+In above application we need to add "servlet-api.jar" file in project build path.
+
+form.html 
+---------
+<form action="first.jsp">
+	
+	Name : <input type="text" name="t1"/> 
+	
+	<input type="submit" value="submit"/>
+	
+</form>
+
+first.jsp 
+---------
+<%
+
+	String name = request.getParameter("t1");
+	session.setAttribute("pname",name);
+%>
+<center>
+	<h1>
+		<a href="second.jsp"> click for second.jsp </a>
+	</h1>
+</center>
+
+second.jsp 
+-----------
+<%
+	String name = (String) session.getAttribute("pname");
+%>
+<center>
+	<h1>
+		<%= "Welcome : "+name %>
+	</h1>
+</center>
+
+web.xml 
+-------
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  
+  <welcome-file-list>
+  	<welcome-file>form.html</welcome-file>
+  </welcome-file-list>
+  
+</web-app>
+	
+Request url
+----------
+	http://localhost:2525/JspApp15/
+
+
+pageContext  object
+====================
+A pageContext is an implicit object of type PageContext.
+
+It is created by the web container.
+
+It is used to read, add and remove attributes to/from session using following scopes.
+
+1) Page scope 
+
+2) Request scope 
+
+3) Session scope 
+
+4) Application scope 
+
+Deployment Directory Structure 
+------------------------------
+JspApp16
+|
+|---Java Resources
+|
+|---WebContent 
+	|
+	|---form.html 
+	|---first.jsp 
+	|---second.jsp 
+	|
+	|---WEB-INF
+		|
+		|---web.xml 
+Note:
+-----
+In above application we need to add "servlet-api.jar" file in project build path.
+
+
+form.html
+-----------
+
+<form action="first.jsp">
+	
+	Name : <input type="text" name="t1"/> 
+	
+	<input type="submit" value="submit"/>
+	
+</form>
+
+
+web.xml 
+---------
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  
+  <welcome-file-list>
+  	<welcome-file>form.html</welcome-file>
+  </welcome-file-list>
+  
+</web-app>
+
+first.jsp
+---------
+
+<%
+
+	String name = request.getParameter("t1");
+	pageContext.setAttribute("pname",name,pageContext.SESSION_SCOPE);
+%>
+<center>
+	<h1>
+		<a href="second.jsp"> click for second.jsp </a>
+	</h1>
+</center>
+
+second.jsp 
+-----------
+
+<%
+	String name = (String) pageContext.getAttribute("pname",pageContext.SESSION_SCOPE);
+%>
+<center>
+	<h1>
+		<%= "Hey! Welcome : "+name %>
+	</h1>
+</center>
+
+Request url
+-----------
+	http://localhost:2525/JspApp16
+
+How to deploy war file in Tomcat server 
+=======================================
+step1:
+-----
+	Make sure any web application is ready.
+
+step2:
+-----	
+	Convert dynamic web project to war file.
+	ex:
+		right click to project --> export --> war file -->
+		---> select desntination ---> Desktop --> Finish.
+
+step3:
+-----
+	 Start Tomcat server manually from "Tomcat/bin" folder.
+
+step4:
+------
+	Type below request url to see tomcat console page.
+	ex:
+		http://localhost:2525
+
+step5:
+------
+	Login to Manager App with username and password:
+	ex:
+		username : admin 
+		password : admin 
+
+step6:
+------
+	Deploy war file to Tomcat server.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+

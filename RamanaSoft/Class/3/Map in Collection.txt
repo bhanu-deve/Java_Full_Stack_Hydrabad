@@ -1,0 +1,134 @@
+Map in Collection
+-----------------
+In Java, a Map is part of the Collections Framework and is used to store key-value pairs. Unlike other collection types like List or Set, a Map is not a true collection, but it is included in the framework because it deals with collections of data.
+
+Key Points of Map:
+-----------------
+Stores data in key-value pairs.
+
+Keys are unique, but values can be duplicated.
+
+Common implementations: HashMap, LinkedHashMap, TreeMap, and Hashtable.
+
+Example: 
+-------
+import java.util.*;
+
+public class MapExample {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+
+        // Adding key-value pairs
+        map.put("Apple", 3);
+        map.put("Banana", 2);
+        map.put("Orange", 5);
+
+        // Accessing a value
+        System.out.println("Apple count: " + map.get("Apple"));
+
+        // Iterating through map
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + " = " + entry.getValue());
+        }
+
+        // Checking if key exists
+        System.out.println("Contains 'Banana'? " + map.containsKey("Banana"));
+
+        // Removing a key
+        map.remove("Orange");
+        System.out.println("After removing Orange: " + map);
+    }
+}
+
+| Map Type         | Ordering                     | Thread Safe | Null Keys |
+|------------------|------------------------------|-------------|------------|
+| `HashMap`        | No order                     | No          | 1 allowed  |
+| `LinkedHashMap`  | Insertion order              | No          | 1 allowed  |
+| `TreeMap`        | Sorted by keys (natural or custom) | No   | Not allowed if keys are null |
+| `Hashtable`      | No order                     | Yes         | Not allowed |
+
+
+Sort by Keys using TreeMap
+--------------------------
+
+import java.util.*;
+
+public class SortByKeyExample {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("Banana", 2);
+        map.put("Apple", 3);
+        map.put("Orange", 5);
+
+        // Sort by keys
+        Map<String, Integer> sortedMap = new TreeMap<>(map);
+
+        System.out.println("Sorted by keys:");
+        for (Map.Entry<String, Integer> entry : sortedMap.entrySet()) {
+            System.out.println(entry.getKey() + " = " + entry.getValue());
+        }
+    }
+}
+
+Sort by Values using Stream
+---------------------------
+
+import java.util.*;
+import java.util.stream.*;
+
+public class SortByValueExample {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("Banana", 2);
+        map.put("Apple", 3);
+        map.put("Orange", 1);
+
+        // Sort by values
+        Map<String, Integer> sortedByValue = map.entrySet()
+            .stream()
+            .sorted(Map.Entry.comparingByValue())
+            .collect(Collectors.toMap(
+                Map.Entry::getKey,
+                Map.Entry::getValue,
+                (e1, e2) -> e1,
+                LinkedHashMap::new  // maintain the sorted order
+            ));
+
+        System.out.println("Sorted by values:");
+        sortedByValue.forEach((key, value) -> System.out.println(key + " = " + value));
+    }
+}
+
+What is Load Factor?
+--------------------
+Load Factor = Number of elements / Number of buckets
+
+If the load factor exceeds a certain value, the map resizes (doubles capacity).
+
+Default load factor in Java is 0.75
+
+This provides a good tradeoff between time and space: minimizes collisions while reducing memory overhead.
+
+import java.util.HashMap;
+
+public class LoadFactorExample {
+    public static void main(String[] args) {
+        // Initial capacity = 4, load factor = 0.75
+        HashMap<Integer, String> map = new HashMap<>(4, 0.75f);
+
+        map.put(1, "Apple");
+        map.put(2, "Banana");
+        map.put(3, "Cherry");
+
+        // At this point: size = 3, capacity = 4, load factor = 0.75
+        // Adding one more will cause resize (3+1)/4 = 1.0 > 0.75
+
+        map.put(4, "Date"); // Triggers resize
+
+        System.out.println("Map entries: " + map);
+    }
+}
+
+
+
+

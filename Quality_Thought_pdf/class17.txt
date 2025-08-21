@@ -1,0 +1,478 @@
+ex:
+----
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int i = 10;
+		
+		int j = i++ + i++; //10+11
+		
+		System.out.println(i+" "+j);//12  21
+	}
+}
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int i = 10;
+		
+		int j = i-- + i--; // 10 + 9 
+		
+		System.out.println(i+" "+j);// 8  19
+	}
+}
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int i = 10;
+		
+		int j =i++ + i++ + i--; //10 + 11 + 12 
+		
+		System.out.println(i+" "+j);// 11  33
+	}
+}
+
+Pre Increment/Decrement 
+=======================
+Rule1: First Change 
+Rule2: Then Take 
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int i = 10;
+		
+		++i;
+		
+		System.out.println(i); // 11
+	}
+}
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int i = 10;
+		
+		System.out.println(++i); // 11
+	}
+}
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int i = 10;
+		
+		int j = ++i;
+		
+		System.out.println(i+" "+j); // 11  11
+	}
+}
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int i = 10;
+		
+		int j = ++i + ++i; // 11 + 12
+		
+		System.out.println(i+" "+j); // 12   23
+	}
+}
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int i = 10;
+		
+		int j = --i + --i; // 9 + 8 
+		
+		System.out.println(i+" "+j); // 8  17
+	}
+}
+
+ex:
+----
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int i=100;
+		
+		100++;
+		
+		System.out.println(i);
+	}
+}
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		byte b = 127;
+		
+		b++;
+		
+		System.out.println(b); // -128
+	}
+}
+
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int i=10;
+		
+		System.out.println(++(i++)); // C.T.E 
+	}
+}
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int i=10;
+		
+		System.out.println(i++ + ++i);//10+12 = 22
+	}
+}
+
+
+
+Control Statements 
+==================
+Control statements enable the programmer to control the flow of a program.
+
+Controll statements allow us to make decisions, to jump from one section of code to another section and to execute the code repeatedly. 
+
+In java, we have three control statements.
+
+1) Decision Making Statement 
+
+2) Iteration Statement 
+
+3) Jump Statement 
+
+1) Decision Making Statement 
+----------------------------
+It is used to declare the conditions in our program.
+
+Decision making statement is possible by using following ways.
+
+i) if stmt 
+
+ii) if else stmt 
+
+iii) if else if ladder 
+
+iv) nested if stmt 
+
+v) switch case 
+
+
+i) if stmt 
+=============
+It is used to execute the source code only if our condition is true.
+
+syntax:
+-----
+	if(condition)
+	{
+		-
+		- //code to be execute 
+		-
+	}
+
+ex:
+----
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("stmt1");
+		
+		if(!(5>2))
+		{
+			System.out.println("stmt2");
+		}
+		
+		System.out.println("stmt3");
+	}
+}
+o/p:
+	stmt1
+	stmt3
+
+ex:
+----
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("stmt1");
+		
+		if(10!=20)
+		{
+			System.out.println("stmt2");
+		}
+		
+		System.out.println("stmt3");
+	}
+}
+o/p:
+	stmt1
+	stmt2
+	stmt3
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		
+		
+		if((5>2) || (6<1))
+			System.out.println("stmt1");
+			System.out.println("stmt2");
+			System.out.println("stmt3");
+	}
+}
+o/p:
+	stmt1
+	stmt2
+	stmt3
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		if((5>20) || (6<1))
+			System.out.println("stmt1");
+			System.out.println("stmt2");
+			System.out.println("stmt3");
+	}
+}
+o/p:
+	stmt2
+	stmt3
+
+Q) Write a java program to find out greatest of two numbers?
+
+import java.util.Scanner;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the first number :");
+		int a = sc.nextInt();
+		
+		System.out.println("Enter the second number :");
+		int b = sc.nextInt();
+		
+		if(a>b)
+			System.out.println(a+" is greatest");
+		if(b>a)
+			System.out.println(b+" is greatest");
+	}
+}
+
+Q) Write a java program to find out greatest of three numbers?
+
+import java.util.Scanner;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the first number :");
+		int a = sc.nextInt();
+		
+		System.out.println("Enter the second number :");
+		int b = sc.nextInt();
+		
+		System.out.println("Enter the third number :");
+		int c = sc.nextInt();
+		
+		if((a>b) && (a>c))
+			System.out.println(a+" is greatest");
+		if((b>a) && (b>c))
+			System.out.println(b+" is greatest");
+		if((c>a) && (c>b))
+			System.out.println(c+" is greatest");
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

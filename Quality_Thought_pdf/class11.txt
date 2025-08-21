@@ -1,0 +1,345 @@
+Q) What is difference between System.out.println() and System.err.println()?
+
+System.out.println()
+--------------------
+It is used to display standard output. 
+It is used to display the output only on console.
+
+
+System.err.println()
+-------------------
+It is used to display error output.
+
+It is used to display the output on console and it redirect the output to physical file.
+
+
+ex:
+---
+class Test 
+{
+	public static void main(String[] args)
+	{
+		System.out.println("standard output");
+		System.err.println("error output");
+	}
+}
+
+ex:
+----
+class Test 
+{
+	public static void main(String[] args)
+	{
+		System.err.println("Welcome to Java");
+	}
+}
+javac  Test.java
+java   Test 2>abc.txt 
+
+
+
+Var-arg method 
+==============
+Untill 1.4 version it is not possible to declare a method with variable number of arguments.But from 1.5 version onwards it is possible to declare a method with variable number of arguments.
+
+We can declare var-arg method as follow.
+
+ex:			
+			var-arg parameter 
+			   |
+		       ---------	
+	void methodOne(int...  x)
+			   |
+			ellipse 
+
+We can invoke var-arg method with any number of integer values including zero.
+
+ex:1
+----
+class Test 
+{
+	public static void main(String[] args)
+	{
+		methodOne();
+	}
+	//static method 
+	public static void methodOne()
+	{
+		System.out.println("MethodOne");	
+	}
+}
+
+ex:2
+----
+class Test 
+{
+	public static void main(String[] args)
+	{
+		methodOne(10);
+	}
+	//static method 
+	public static void methodOne(int i)
+	{
+		System.out.println("MethodOne");	
+	}
+}
+
+ex:3
+----
+class Test 
+{
+	public static void main(String[] args)
+	{
+		methodOne();
+		methodOne(10);
+		methodOne(10,20);
+		methodOne(10,20,30);
+	}
+	//static method 
+	public static void methodOne(int... i)
+	{
+		System.out.println("var-arg method");	
+	}
+}
+
+case1: 
+------
+	We can mix var-arg parameter with normal parameters.
+	ex:
+		methodOne(int x,int... y)
+	
+case2:
+-----
+	If we mix var-arg parameter with normal parameters then var-arg parameter must 
+	be last parameter.
+	ex:
+		methodOne(int... x,int  y)   //invalid 
+		methodOne(int x,int...  y) 
+
+case3:
+------	
+	A var-arg method can have only one var-arg parameter.
+	ex:
+		methodOne(int... x)
+		methodOne(int... x,int... y)  //invalid 
+
+Java Source File Structure 
+==========================
+case1:
+-----
+	A java program can have multiple classes.
+
+case2:
+-----
+	If a java program contains multiple classes then we need to check 
+	which class contains main method and that class treated as main class.
+	ex:
+		Test.java
+		----------
+		class A 
+		{
+			- //some logic 
+		}
+		class Test 
+		{
+			public static void main(String[] args)
+			{
+				- //some logic 
+			}		
+		}
+
+case3:
+------
+	If a java program contains multiple class with main method then we can save 
+	that program name with any name. 
+	ex:
+		Ihub.java
+		-------
+		class A
+		{
+			public static void main(String[] args)
+			{
+				System.out.println("A-class");
+			}
+		}
+		class B
+		{
+			public static void main(String[] args)
+			{
+				System.out.println("B-class");
+			}
+		}
+		class C
+		{
+			public static void main(String[] args)
+			{
+				System.out.println("C-class");
+			}
+		}
+		
+	If we compile above program we will get three .class files i.e 
+	A.class, B.class and C.class.
+	ex:
+		javac   Ihub.java
+
+		java  A (A class will execute)
+		java  B (B class will execute)
+		java  c (C class will execute)
+
+case3:
+------
+	If a java program contains multiple class with main method then we need to 
+	declare one class as public and that public class treated as main class.
+	ex:
+		A.java
+		-------
+		public class A
+		{
+			public static void main(String[] args)
+			{
+				System.out.println("A-class");
+			}
+		}
+		class B
+		{
+			public static void main(String[] args)
+			{
+				System.out.println("B-class");
+			}
+		}
+		class C
+		{
+			public static void main(String[] args)
+			{
+				System.out.println("C-class");
+			}
+		}
+		
+	If we compile above program we will get three .class files i.e 
+	A.class, B.class and C.class.
+	ex:
+		javac   A.java
+
+		java  A (A class will execute)
+		java  B (B class will execute)
+		java  c (C class will execute)	
+
+
+Fully Qualified Name 
+====================
+Fully qualified name allows us to declare a class or interface along with package name.
+
+ex:
+	java.io.File
+	java.io.Serializable	
+
+Fully qualified name is used to improve readability of our code.
+
+We need to use fully qualified name when same class or interface present in two different packages.
+ex:
+	java.util.Date 
+	java.sql.Date 
+
+ex:
+----
+class Test 
+{
+	public static void main(String[] args)
+	{
+		java.util.Date d = new java.util.Date();
+		System.out.println(d); 	
+	}
+}
+
+ex:
+---
+class Test 
+{
+	public static void main(String[] args)
+	{
+		java.util.Date d = new java.util.Date();
+		int h = d.getHours();
+		int m = d.getMinutes();
+		int s = d.getSeconds(); 	
+		System.out.println(h+":"+m+":"+s);
+	}
+}
+
+ex:
+---
+class Test 
+{
+	public static void main(String[] args)
+	{
+		java.util.Date d = new java.util.Date();
+		int dd = d.getDate();
+		int mm = d.getMonth()+1;
+		int yy = d.getYear()+1900; 	
+		System.out.println(dd+"/"+mm+"/"+yy);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,318 @@
+Type3 JDBC Driver Architecture / Net Protocol
+=============================================
+Web server, proxy server or IDE's server contains JDBC Connection pool.
+
+Type3 JDBC driver is designed to interact with webserver, proxy server or IDE's server to get one reusable JDBC Connection object from JDBC connection pool.
+
+Diagram: jdbc4.1
+
+With respect to the diagram
+---------------------------
+1) Webserver or proxy server interacts with database software and gets JDBC Connection
+   objects in JDBC Connection pool.
+
+2) Our application interacts with web server or proxy server to get reusable Connection object
+   from JDBC Connection pool.
+	
+3) Our application uses JDBC Connection object to create other Connection objects.
+
+4) Once if we call con.close() our Connection object goes back to JDBC connection pool.
+
+
+
+
+Q) Types of Connection objects?
+
+We have two types of Connection objects.
+
+1) Direction JDBC Connection object
+-----------------------------------
+A JDBC Connection object which is created by the user.
+ex:
+	Class.forName("oracle.jdbc.driver.OracleDriver");
+	Connection con = DriverManager.getConnection			("jdbc:oracle:thin:@localhost:1521:XE","system","admin"); 
+
+2) Pooled JDBC Connection object  
+---------------------------------
+A JDBC Connection object which is gather from JDBC Connection pool.
+
+
+
+Q) Types of Statement objects in JDBC?
+
+We have three Statement objects in JDBC.
+
+1) Simple Statement object 
+-------------------------
+It is an object of underlying supplied java class which implements java.sql.Statement (I).
+
+2) PreparedStatement object 
+-----------------------------
+It is an object of underlying supplied java class which implements 
+java.sql.PreparedStatement(I).
+
+3) CallableStatement object 
+---------------------------
+It is an object of underlying supplied java class which implements 
+java.sql.CallableStatement (I).
+
+
+Standard Procedure to develop JDBC Application 
+===============================================
+package com.ihub.www;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class StandardApp 
+{
+	public static void main(String[] args) 
+	{
+		final String DRIVER="oracle.jdbc.driver.OracleDriver";
+		final String URL="jdbc:oracle:thin:@localhost:1521:XE";
+		final String USERNAME="system";
+		final String PASSWORD="admin";
+		final String QUERY="select * from student";
+		
+		Connection con = null;
+		Statement st = null;
+		ResultSet rs = null;
+		try
+		{
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL,USERNAME,PASSWORD);
+			st = con.createStatement();
+			rs = st.executeQuery(QUERY);
+			while(rs.next())
+			{
+		System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getString(3));
+			}
+			rs.close();
+			st.close();
+			con.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+}
+
+
+Q) Write a JDBC application to create a student table?
+
+package com.ihub.www;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
+public class CreateTableApp 
+{
+	public static void main(String[] args)throws Exception 
+	{
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","admin");
+		Statement st = con.createStatement();
+		String qry = "create table student(sno number(3),sname varchar2(10),sadd varchar2(12))";
+		st.executeUpdate(qry);
+		System.out.println("Table is created");
+		st.close();
+		con.close();
+	}
+}
+
+
+Q) Write a JDBC application to select the records from student table and store in ArrayList?
+
+Student.java
+------------
+package com.ihub.www;
+
+public class Student 
+{
+	private int sno;
+	private String sname;
+	private String sadd;
+	
+	public Student(int sno, String sname, String sadd) {
+		super();
+		this.sno = sno;
+		this.sname = sname;
+		this.sadd = sadd;
+	}
+
+	public int getSno() {
+		return sno;
+	}
+
+	public void setSno(int sno) {
+		this.sno = sno;
+	}
+
+	public String getSname() {
+		return sname;
+	}
+
+	public void setSname(String sname) {
+		this.sname = sname;
+	}
+
+	public String getSadd() {
+		return sadd;
+	}
+
+	public void setSadd(String sadd) {
+		this.sadd = sadd;
+	}
+
+	@Override
+	public String toString() {
+		return sno+" "+sname+" "+ sadd;
+	}
+	
+	
+}
+
+ArrayListApp.java
+------------------
+package com.ihub.www;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+public class ArrayListApp 
+{
+	public static void main(String[] args)throws Exception 
+	{
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","admin");
+		Statement st = con.createStatement();
+		String qry = "select * from student";
+		ResultSet rs = st.executeQuery(qry);
+		
+		ArrayList<Student> al = new ArrayList<Student>();
+		
+		while(rs.next())
+		{
+			al.add(new Student(rs.getInt(1),rs.getString(2),rs.getString(3)));
+		}
+		
+		al.forEach(System.out::println);
+		
+		rs.close();
+		st.close();
+		con.close();
+	}
+}
+
+
+SQL Injection Problem 
+=====================
+Along with input values if we pass special SQL instructions which change the behaviour of a query and application is called SQL injection problem.
+
+Here special SQL instructions means comment in SQL i.e --.
+
+ex:
+	Enter the username : raja'-- 
+	Enter the password : pooja 
+
+	Valid Credentials 
+
+While dealing with simple Statement object there is a chance of raising SQL injection problem.
+
+To overcome this limitation we need to use PreparedStatement object.
+
+userlist table 
+==============
+drop table userlist;
+create table userlist(uname varchar2(10),pwd varchar2(10));
+insert into userlist values('raja','rani');
+insert into userlist values('king','kingdom');
+commit;
+
+
+ex:
+---
+package com.ihub.www;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Scanner;
+
+public class SqlInjProbApp 
+{
+	public static void main(String[] args)throws Exception  
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the username :");
+		String name = sc.next();
+		
+		System.out.println("Enter the password :");
+		String pass = sc.next();
+		
+		//convert input values accoring to SQL query 
+		name="'"+name+"'";
+		pass="'"+pass+"'";
+		
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","admin");
+		Statement st = con.createStatement();
+		
+		String qry = "select count(*) from userlist where uname="+name+" and pwd="+pass;
+		
+		ResultSet rs = st.executeQuery(qry);
+		
+		int result =0;
+		while(rs.next())
+		{
+			result = rs.getInt(1);
+		}
+		if(result==0)
+			System.out.println("Invalid Credentials ");
+		else
+			System.out.println("Valid Credentials ");
+		
+		rs.close();
+		st.close();
+		con.close();
+	}
+}
+
+
+Limitations with simple Statement object
+========================================
+> It is not suitable to execute same query for multiple times.
+
+> It raises SQL injection problem. 
+
+> Framing query with variables is quit complex.
+
+> We can't use string values directly to query without conversion.
+
+> It does not allow us to insert date values to database table column.
+
+> It does not allow us to insert LOB values to database table column.
+
+To over come this above limitations we need to use PreparedStatement object.
+
+
+
+
+
+
+
+
+
+
+
+
+

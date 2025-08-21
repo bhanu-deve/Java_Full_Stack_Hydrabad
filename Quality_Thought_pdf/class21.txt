@@ -1,0 +1,497 @@
+Q) Write a java program to find out sum of digits of a given number?
+
+input:
+	123
+output:
+	6
+
+
+import java.util.Scanner;
+class  Test 
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the number :");
+		int n = sc.nextInt(); // 123
+		
+		int rem,sum=0;
+		
+		while(n>0)
+		{
+			rem = n%10;
+			
+			sum = sum + rem;
+			
+			n = n/10;
+		}
+		System.out.println(sum);
+	}
+}
+
+Q) Write a java program to check given number is Amrstrong or not?
+
+Input:
+	123
+
+Output:
+	It is not a Armstrong number 
+
+Input:
+	153
+Output:
+	It is a Armstrong number 
+
+
+import java.util.Scanner;
+class  Test 
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the number :");
+		int n = sc.nextInt(); // 123
+		
+		int temp=n;
+		
+		int rem,sum=0;
+		
+		while(n>0)
+		{
+			rem = n%10;
+			
+			sum = sum + rem * rem * rem;
+			
+			n = n/10;
+		}
+		if(temp==sum)
+			System.out.println("It is a armstrong number");
+		else
+			System.out.println("It is not a armstrong number");
+	}
+}
+
+Q) Write a java program to display reverse of a given number?
+
+input:
+	123
+output:
+	321
+
+ex:
+---
+import java.util.Scanner;
+class  Test 
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the number :");
+		int n = sc.nextInt(); // 123
+		
+		int rem,rev=0;
+		
+		while(n>0)
+		{
+			rem = n%10;
+			
+			rev = rev*10+rem;
+			
+			n = n /10;
+		}
+		System.out.println(rev);
+	}
+}
+
+Q) Write a java program to find out given number is palindrome or not?
+
+input:
+	123
+output:
+	It is not a palindrome number 
+
+input:
+	121
+output:
+	It is a palindrome number 
+
+import java.util.Scanner;
+class  Test 
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the number :");
+		int n = sc.nextInt(); // 123
+		
+		int temp=n;
+		
+		int rem,rev=0;
+		
+		while(n>0)
+		{
+			rem = n%10;
+			
+			rev = rev*10+rem;
+			
+			n = n/10;
+		}
+		if(temp==rev)
+			System.out.println("It is a palindrome number");
+		else
+			System.out.println("It is not a palindrome number");
+	}
+}
+
+Q) Write a java program to display reverse of a given number?
+
+input:
+	123
+
+output:	
+	ThreeTwoOne 
+
+ex:
+---
+import java.util.Scanner;
+class  Test 
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the number :");
+		int n = sc.nextInt(); // 123
+		
+		while(n>0)
+		{
+			switch(n%10)
+			{
+				case 0 : System.out.print("Zero");break;
+				case 1 : System.out.print("One");break;
+				case 2 : System.out.print("Two");break;
+				case 3 : System.out.print("Three");break;
+				case 4 : System.out.print("Four");break;
+				case 5 : System.out.print("Five");break;
+				case 6 : System.out.print("Six");break;
+				case 7 : System.out.print("Seven");break;
+				case 8 : System.out.print("Eight");break;
+				case 9 : System.out.print("Nine");break;
+			}
+			n=n/10;
+		}
+	}
+}
+
+
+
+Q)
+
+There is a well length of 10 meters and one frog unfortunately fell down in that well. So every day that frog tries to come out from well. So frog will jump 2 meters and rollback 1 meter everyday. Then print in how many days a frog will be outside of the well.
+
+class  Test 
+{
+	public static void main(String[] args) 
+	{
+		int wellLength = 10;
+		int jump = 2;
+		int rollback = 1;
+		
+		int days=0;
+		int currentPosition=0;
+		
+		while(currentPosition<wellLength)
+		{
+			days++;
+			currentPosition+=jump;
+			
+			if(currentPosition>=wellLength)
+			{
+				break;
+			}
+			
+			currentPosition-=rollback;
+		}
+		
+		System.out.println("In "+days+" days frog will out of the well");
+	}
+}
+
+iii) for loop 
+==============
+It is used to execute the source code how long our condition is true.
+
+syntax:
+------
+	for(initialization;condition;increment/decrement)
+	{
+		-
+		- //code to be execute 
+		-
+	}
+
+Note:
+-----
+If number of iterations known by the user then we need to use for loop.
+
+If number of iterations are not known by the user then we need to use while loop.
+
+If number of iterations are not known by the user but code must execute atleast for one time then we need to use do while loop.
+
+ex:
+---
+class  Test 
+{
+	public static void main(String[] args) 
+	{
+		for(int i=1;i<=10;i++)
+		{
+			System.out.print(i+" ");//1 2 3 4 5 6 7 8 9 10
+		}
+	}
+}
+
+ex:
+---
+class  Test 
+{
+	public static void main(String[] args) 
+	{
+		for(int i=1;i<=10;i++)
+		{
+			if(i%2==0)
+			{
+				System.out.print(i+" ");  // 2 4 6 8 10
+			}
+		}
+	}
+}
+
+ex:
+---
+class  Test 
+{
+	public static void main(String[] args) 
+	{
+		for(int i=1;i<=10;i++)
+		{
+			if(i%2==0)
+			{
+				System.out.print(i+" "); //2  6 10
+				
+				i+=2;
+			}
+		}
+	}
+}
+
+ex:
+---
+class  Test 
+{
+	public static void main(String[] args) 
+	{
+		for(;;)
+		{
+			System.out.print("Hello ");
+		}
+	}
+}
+
+Q) Write a java program to check given number is prime or not?
+
+Input:
+	5
+
+Output:
+	It is a prime number 
+
+ex:
+---
+import java.util.Scanner;
+class  Test 
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the number :");
+		int n = sc.nextInt();
+	
+		boolean flag=true;
+		
+		for(int i=2;i<=n/2;i++)
+		{
+			if(n%i==0)
+			{
+				flag=false;
+				break;
+			}
+		}
+		if(flag==true)
+			System.out.println("It is a prime number");
+		else
+			System.out.println("It is not a prime number");
+	}
+}
+
+Q) Write a java program to display list of prime numbers from 1 to 100?
+
+2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 
+43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97. 
+
+class  Test 
+{
+	public static void main(String[] args) 
+	{
+		for(int n=2;n<=100;n++)
+		{
+	
+			boolean flag=true;
+		
+			for(int i=2;i<=n/2;i++)
+			{
+				if(n%i==0)
+				{
+					flag=false;
+					break;
+				}
+			}
+			if(flag==true)
+				System.out.print(n+" ");
+		}
+	}
+}
+
+Q) Write a java program to check out given number is perfect or not?
+
+input:
+	6
+
+output:
+	It is a perfect number 
+
+import java.util.Scanner;
+class  Test 
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the number :");
+		int n = sc.nextInt(); // 6
+		
+		int sum=0;
+		for(int i=1;i<=n/2;i++)
+		{
+			if(n%i==0)
+			{
+				sum+=i;
+			}
+		}
+		if(sum == n)
+			System.out.println("It is a perfect number");
+		else
+			System.out.println("It is not a perfect number");
+		
+	}
+}
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

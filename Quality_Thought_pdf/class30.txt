@@ -1,0 +1,381 @@
+Data Hiding 
+===========
+The process of hiding object data from unauthorized access is called data hiding.
+
+Using private modifier we can implements data hiding concept.
+
+The main objective of data hiding is to provide security.
+
+ex:
+---
+class Account 
+{
+	private double balance=10000;
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		Account account = new Account();
+		System.out.println(account.balance);
+	}
+}
+o/p:
+	C.T.E : balance has private access in Account
+
+
+ex:
+---
+class Account 
+{
+	private double balance=10000;
+	
+	@Override
+	public String toString()
+	{
+		return "Balance :"+balance;
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		Account account = new Account();	
+		System.out.println(account);
+	}
+}
+
+Abstraction 
+===========
+Hiding internal implementation and highlighting the set of services is called abstraction.
+
+The best example of abstraction is GUI ATM machine where bank people will hide internal implementation and highlights the set of services like banking, withdrawl, mini statement and etc.
+
+Using abstract classes and interfaces we can implements abstraction.
+
+The main advantages of abstraction are
+
+1) It gives security because it hides internal implementation.
+
+2) Enhancement becomes more easy because without effecting enduser they can perform any 
+   changes in our system.
+
+3) It provides flexibility to the enduser to use the system.
+
+4) It improves maintainability of an application.
+
+Encapsulation 
+==============
+The process of encapsulating or binding variables and it's associate methods in a single entity is called encapsulation.
+
+The best example for encapsulation is capsule.
+
+Diagram: class30.1
+
+Abstraction is used to hide the data and Encapsulation is used to protect the data.
+
+A class is said to be encapsulated class if it supports data hiding and abstraction.
+
+In encapsulation for every variable we need to write setter and getter methods.
+
+Diagram: class30.2
+
+The main disadvantage of encapsulation is , it will increase the length of our code and slow down the execution process.
+
+The main advantages of encapsulation are
+
+1) It gives security.
+
+2) Enhancement becomes more easy.
+
+3) It provides flexibility to the enduser to use the system.
+
+4) It improves maintainability of an application.
+
+
+ex:
+---
+class Student
+{
+	private int studId;
+	private String studName;
+	private double studFee;
+	
+	//setter methods 
+	public void setStudId(int studId)
+	{
+		this.studId=studId;
+	}
+	public void setStudName(String studName)
+	{
+		this.studName=studName;
+	}
+	public void setStudFee(double studFee)
+	{
+		this.studFee=studFee;
+	}
+	
+	//getter methods 
+	public int getStudId()
+	{
+		return studId;
+	}
+	public String getStudName()
+	{
+		return studName;
+	}
+	public double getStudFee()
+	{
+		return studFee;
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		Student s=new Student();
+		s.setStudId(101);
+		s.setStudName("Alan");
+		s.setStudFee(1000d);
+		
+		System.out.println("Student Id : "+s.getStudId());
+		System.out.println("Student Name : "+s.getStudName());
+		System.out.println("Student Fee : "+s.getStudFee());
+	}
+}
+
+ex:
+---
+class Student
+{
+	private int studId;
+	private String studName;
+	private double studFee;
+	
+	//setter methods 
+	public void setStudId(int studId)
+	{
+		this.studId=studId;
+	}
+	public void setStudName(String studName)
+	{
+		this.studName=studName;
+	}
+	public void setStudFee(double studFee)
+	{
+		this.studFee=studFee;
+	}
+	
+	//getter methods 
+	public int getStudId()
+	{
+		return studId;
+	}
+	public String getStudName()
+	{
+		return studName;
+	}
+	public double getStudFee()
+	{
+		return studFee;
+	}
+	
+	//toString method 
+	@Override
+	public String toString()
+	{
+		return "Student Id :"+studId+"\nStudent Name : "+studName+"\nStudent Fee : "+studFee;
+	}
+	
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		Student s=new Student();
+		s.setStudId(101);
+		s.setStudName("Alan");
+		s.setStudFee(1000d);
+		
+		System.out.println("Student Id : "+s.getStudId());
+		System.out.println("Student Name : "+s.getStudName());
+		System.out.println("Student Fee : "+s.getStudFee());
+		
+		System.out.println("======================");
+		
+		System.out.println(s);
+	}
+}
+
+
+
+Q) What is the difference between POJO class and Java Bean class?
+
+POJO 						Java Bean
+----------					-----------
+It can't be serialized.				It can be serialized. 
+
+Fields can have any visibility. 		Fields can have only private visibility.
+
+It does not required constructor.		It requires atleast zero argument constructor.
+
+It does not extend outside classes.		It extends outside classes.
+
+It does not implement outside interfaces.	It implements outside interfaces.
+
+It does not use outside annotations.		It uses outside annotations.
+
+Note:
+-----
+	Every java bean class is a pojo class but every pojo class is not a java bean class.	
+
+Q) What is the difference between Abstraction and Encapsulation?
+
+Abstraction					Encapsulation 
+-------------					--------------
+Hiding internal implementation and highlighting	The process of encapsulating or binding the  
+the set of services is called abstraction.	variables and it's associate methods in 
+						single entity is called encapsulation.
+
+Best example is GUI ATM machine.		Best example is Capsule.
+
+Using abstract classes and interfaces we	Using access modifiers we can implements  
+can implements abstraction.			encapsulation.
+
+It is used to hide the data.			It is used to protect the data.
+
+It is a process of gainning the information.	It is a process of containing the information.
+
+It solves an issue at design level.		It solves an issue at implementation level.
+
+
+
+
+Q) What is tightly encapsulated class?
+
+A class is said to be tightly encapsulated class if that class supports all variables as private. Here we don't need to check, these variables contain setter and getter methods or not.
+
+ex:
+---
+	class A 
+	{
+		private int i = 10;
+	}	
+	// tightly encapsulated class 
+
+ex:
+	class A 
+	{
+		int i =10;
+		private int j =20;
+	}
+	// It is not tightly encapsulated class 
+
+ex:
+---
+	class A 
+	{
+		int i=10;
+	}
+	class B extends A 
+	{
+		private int j=20;
+	}
+	// It is not tightly encapsulated class 
+
+
+
+Is-A relationship 
+=================
+Is-A relationship is also known as inheritance.
+
+Using extends keyword we can implements Is-A relationship.
+
+The main objective of Is-A relationship is to provide reusability.
+
+ex:
+---
+class Parent 
+{
+	public void methodOne()
+	{
+		System.out.println("MethodOne");
+	}
+}
+class Child extends Parent
+{
+	public void methodTwo()
+	{
+		System.out.println("MethodTwo");
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		Parent p = new Parent();
+		p.methodOne();
+		
+		Child c = new Child();
+		c.methodOne();
+		c.methodTwo();
+		
+		Parent p1 = new Child();
+		p1.methodOne();
+		
+		// Child c1  = new Parent();  // C.T.E 
+	}
+}
+
+conclusion 
+----------
+Whatever parent having properties by default it comes to child. But whatever child having properities never goes back to parent. 
+
+A parent reference can hold child object. But child reference can't hold parent object. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
